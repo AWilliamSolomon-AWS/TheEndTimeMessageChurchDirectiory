@@ -1,0 +1,2 @@
+[functions.church-directory]
+verify_jwt = false

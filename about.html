@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>About - The End Time Message Church Directory</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* =============================================
+       PREMIUM DESIGN SYSTEM
+       Charcoal + Ivory + Antique Gold
+       ============================================= */
+    :root {
+      --charcoal: #171614;
+      --ivory: #F7F4EC;
+      --soft-white: #FFFDF8;
+      --gold: #B8944A;
+      --gold-light: #D6BD82;
+      --warm-gray: #777267;
+      --warm-border: #DDD7C8;
+      --gold-dim: rgba(184, 148, 74, 0.22);
+      --charcoal-light: #2A2824;
+      --text-primary: #1E1C18;
+      --text-secondary: #635D52;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--text-primary);
+      background: var(--ivory);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ── Top utility bar ── */
+    .top {
+      background: #450000;
+      color: #F7F4EC;
+      font-size: 12px;
+      padding: 6px 6%;
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid rgba(214, 189, 130, 0.22);
+    }
+
+    .top span:last-child {
+      color: #D6BD82;
+      font-weight: 500;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #450000;
+      color: #F7F4EC;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #741A20;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #B8944A;
+      opacity: 0.30;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand b {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #F7F4EC;
+      line-height: 1.2;
+      display: block;
+    }
+
+    .brand small {
+      display: block;
+      color: #D6BD82;
+      font-size: 7.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      font-size: 13px;
+      align-items: center;
+      height: 100%;
+    }
+
+    nav a {
+      color: #E2CFCC;
+      transition: color .2s;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      padding-top: 2px;
+    }
+
+    nav a:hover {
+      color: #FFF8F1;
+    }
+
+    nav a.active {
+      color: #F2C56B;
+      border-bottom-color: #F2C56B;
+    }
+
+    /* ── Hero Banner ── */
+    .hero-about {
+      background: radial-gradient(ellipse 90% 70% at 50% -10%, rgba(214, 189, 130, 0.22) 0%, rgba(251, 249, 244, 0.96) 55%, #EDE7D8 100%);
+      color: #171614;
+      text-align: center;
+      padding: 60px 6% 64px;
+      position: relative;
+      border-bottom: 1px solid rgba(184, 148, 74, 0.22);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #A07C2E;
+      margin: 0 0 14px;
+      display: inline-block;
+    }
+
+    .hero-about h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 46px;
+      font-weight: 600;
+      margin: 0 0 14px;
+      color: #171614;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-about p {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 16px;
+      color: #635D52;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* ── Main Content Container ── */
+    .content-wrap {
+      max-width: 1100px;
+      margin: 32px auto 40px;
+      padding: 64px 6% 80px;
+      background: #FFFDF8;
+      border: 1px solid #DDD7C8;
+      border-radius: 14px;
+      box-shadow: 0 6px 28px rgba(23, 22, 20, 0.05);
+    }
+
+    /* ── Section Titles ── */
+    .section-label {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .section-label span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      color: #A07C2E;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-label h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: #171614;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    /* ── Three Pillars Grid ── */
+    .pillars-grid {
+      display: block;
+      margin-bottom: 40px;
+    }
+
+    .pillar-card {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 18px 0;
+      box-shadow: none;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: none;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: #B8944A;
+      opacity: 0.8;
+    }
+
+    .pillar-card:hover {
+      transform: none;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    .pillar-icon {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: #B8944A;
+      display: inline-block;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #171614;
+      margin: 0 0 14px;
+      letter-spacing: -0.3px;
+    }
+
+    .pillar-card p {
+      font-size: 14.5px;
+      color: #635D52;
+      line-height: 1.7;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    /* ── Developer & Dedication Section ── */
+    .dedication-card {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .dedication-header {
+      border-bottom: 1px solid #EAE5D8;
+      padding-bottom: 22px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .dedication-header span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #A07C2E;
+    }
+
+    .dedication-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: #171614;
+      margin: 0;
+    }
+
+    .author-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 0;
+      padding: 8px 0;
+      border-radius: 0;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .author-photo {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #D6BD82;
+      margin-bottom: 8px;
+    }
+
+    .author-badge strong {
+      font-size: 14.5px;
+      color: #171614;
+    }
+
+    .author-badge a {
+      font-size: 12.5px;
+      color: #B8944A;
+      font-weight: 600;
+      text-decoration: underline;
+      transition: color .2s;
+    }
+
+    .author-badge a:hover {
+      color: #9A7A38;
+    }
+
+    .dedication-card p {
+      font-size: 15px;
+      color: #4A463E;
+      line-height: 1.75;
+      margin: 0 0 18px;
+    }
+
+    /* ── Doxology & Scripture Banner ── */
+    .doxology-box {
+      background: linear-gradient(180deg, #1A1916 0%, #131210 100%);
+      color: #F7F4EC;
+      border: 1px solid #332F27;
+      border-radius: 12px;
+      padding: 36px 32px;
+      text-align: center;
+      margin-top: 36px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+      position: relative;
+    }
+
+    .doxology-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: #D6BD82;
+      opacity: 0.45;
+    }
+
+    .glory-statement {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      font-style: italic;
+      color: #D6BD82;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .scripture-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-style: italic;
+      line-height: 1.5;
+      color: #FFFDF8;
+      max-width: 680px;
+      margin: 0 auto 10px;
+    }
+
+    .scripture-ref {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #A09880;
+      font-weight: 600;
+    }
+
+    /* ── Bottom Call To Action ── */
+    .cta-row {
+      text-align: center;
+      padding: 32px 20px;
+      background: #EFEAE0;
+      border-radius: 12px;
+      border: 1px solid #DDD7C8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cta-row h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      margin: 0;
+      color: #171614;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: #171614;
+      color: #F7F4EC;
+      border: 1px solid #171614;
+      padding: 11px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all .22s;
+    }
+
+    .btn-primary:hover {
+      background: #B8944A;
+      border-color: #B8944A;
+      color: #171614;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #171614;
+      border: 1px solid #B8944A;
+      padding: 11px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all .22s;
+    }
+
+    .btn-secondary:hover {
+      background: #B8944A;
+      color: #171614;
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #450000;
+      color: #F7F4EC;
+      padding: 40px 6% 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #B8944A;
+      opacity: 0.28;
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-contact { width:100%; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:24px 26px; margin-bottom:12px; text-align:left; background:#FFFDF8; border:1px solid #D7C7A6; border-radius:14px; box-shadow:0 16px 38px rgba(25,0,5,.18); }
+    .footer-contact-copy { max-width:500px; }
+    .footer-contact-label { color:#8A6425; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; }
+    .footer-contact h2 { margin:5px 0 6px; color:#32151E; font:600 27px 'Cormorant Garamond',Georgia,serif; }
+    .footer-contact p { margin:0; color:#65595A; font:12px/1.65 'Inter',Arial,sans-serif; }
+    .footer-contact-email { color:#7B1828; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; overflow-wrap:anywhere; }
+    .footer-contact-email:hover { color:#A02C38; }
+    .footer-contact-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:9px; }
+    .footer-contact-actions a { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:0 14px; border-radius:6px; font:600 12px 'Inter',Arial,sans-serif; text-decoration:none; white-space:nowrap; transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s; }
+    .footer-contact-primary { background:#171614; color:#FFFDF8; border:1px solid #171614; }
+    .footer-contact-primary:hover { background:#B8944A; border-color:#B8944A; color:#171614; transform:translateY(-1px); box-shadow:0 7px 16px rgba(23,22,20,.2); }
+    .footer-contact-primary:active { transform:translateY(0) scale(.98); box-shadow:none; }
+    .footer-contact-primary:focus-visible { outline:3px solid #D6BD82; outline-offset:3px; }
+    .footer-contact-secondary { color:#E8D9B7; border:1px solid rgba(214,189,130,.36); }
+    .footer-contact-secondary:hover { background:rgba(214,189,130,.1); border-color:#D6BD82; }
+
+    .footer-copy {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #F7F4EC;
+      font-weight: 500;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: #E0CDD0;
+      max-width: 540px;
+      line-height: 1.5;
+    }
+
+    .footer-credit {
+      font-size: 13px;
+      color: #E5D5D1;
+      margin: 4px 0;
+    }
+
+    .footer-credit a {
+      color: #F2C56B;
+      text-decoration: underline;
+      font-weight: 600;
+      display:inline-block;
+      border-radius:3px;
+      transition: color .2s, background .2s, transform .2s, box-shadow .2s;
+    }
+    .footer-credit a:hover { color:#171614; background:#B8944A; transform:translateY(-1px); box-shadow:0 5px 12px rgba(23,22,20,.2); }
+    .footer-credit a:active { transform:translateY(0) scale(.98); box-shadow:none; }
+    .footer-credit a:focus:not(:focus-visible) { color:#F2C56B; background:transparent; transform:none; box-shadow:none; }
+    .footer-credit a:focus-visible { outline:3px solid #D6BD82; outline-offset:3px; }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 12px;
+      color: rgba(226, 207, 204, 0.72);
+      margin-top: 4px;
+    }
+
+    .footer-legal-links a:hover {
+      color: #B8944A;
+    }
+
+    @media(max-width:700px) {
+      .footer-contact { align-items:flex-start; flex-direction:column; gap:16px; padding:20px; }
+      .footer-contact-actions { width:100%; justify-content:flex-start; }
+      .footer-contact-actions a { flex:1; }
+    }
+
+    /* ── Modals ── */
+    .contact-modalbox { width:min(540px,100%); }
+    .contact-intro { margin:-8px 0 18px; color:#716B5E; font:13px/1.6 'Inter',Arial,sans-serif; }
+    .contact-options { display:grid; gap:10px; }
+    .contact-options a { display:grid; gap:5px; padding:16px; border:1px solid #DDD7C8; border-radius:8px; text-decoration:none; color:#171614; background:#F7F4EC; }
+    .contact-options a:hover { border-color:#B8944A; }
+    .contact-options strong { font:600 14px 'Inter',Arial,sans-serif; }
+    .contact-options span { color:#716B5E; font:12px/1.55 'Inter',Arial,sans-serif; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 22, 20, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1000;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modalbox {
+      background: #FFFDF8;
+      width: min(560px, 100%);
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid #DDD7C8;
+      box-shadow: 0 20px 60px rgba(23, 22, 20, 0.22);
+    }
+
+    .modalbox h2 {
+      font-family: 'Cormorant Garamond', serif;
+      color: #171614;
+      margin-top: 0;
+      font-size: 26px;
+      letter-spacing: -0.2px;
+    }
+
+    .modalactions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .modalactions .add {
+      background: #2A2824;
+      color: #F7F4EC;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background .2s;
+    }
+
+    .modalactions .add:hover {
+      background: #171614;
+    }
+
+    .cta-btn {
+      background: #B8944A;
+      color: #171614;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background .22s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-btn:hover {
+      background: #D6BD82;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      nav {
+        display: none;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-about h1 {
+        font-size: 34px;
+      }
+
+      .dedication-card {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .top {
+        display: none;
+      }
+
+      header {
+        height: 56px;
+        padding: 0 5%;
+      }
+
+      .brand b {
+        font-size: 16px;
+      }
+
+      .brand small {
+        font-size: 6.5px;
+        letter-spacing: 0.6px;
+      }
+
+      .hero-about {
+        padding: 40px 5% 44px;
+      }
+
+      .hero-about h1 {
+        font-size: 28px;
+      }
+
+      .content-wrap {
+        padding: 40px 5% 56px;
+      }
+
+      .dedication-card {
+        padding: 26px 18px;
+      }
+
+      .doxology-box {
+        padding: 26px 20px;
+      }
+
+      .scripture-quote {
+        font-size: 18px;
+      }
+    }
+    /* Shared interaction feedback for site buttons */
+    button:not(:disabled), .button, .cta-btn, .footer-contact-actions a {
+      transition:background-color .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;
+    }
+    button:not(:disabled):hover, .button:hover, .cta-btn:hover, .footer-contact-actions a:hover {
+      transform:translateY(-1px);
+      box-shadow:0 7px 16px rgba(23,22,20,.18);
+    }
+    button:not(:disabled):active, .button:active, .cta-btn:active, .footer-contact-actions a:active {
+      transform:translateY(0) scale(.98);
+      box-shadow:none;
+    }
+    button:focus-visible, .button:focus-visible, .cta-btn:focus-visible, .footer-contact-actions a:focus-visible {
+      outline:3px solid #D6BD82;
+      outline-offset:3px;
+    }
+    @media(prefers-reduced-motion:reduce) {
+      button, .button, .cta-btn, .footer-contact-actions a { transition:none!important; }
+      button:hover, .button:hover, .cta-btn:hover, .footer-contact-actions a:hover,
+      button:active, .button:active, .cta-btn:active, .footer-contact-actions a:active { transform:none; }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- Header -->
+  <header>
+    <a class="brand" href="index.html">
+      <span>
+        <b>The End Time Message Church Directory</b>
+        <small>Connecting End Time Message Churches Worldwide</small>
+      </span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="index.html#directory">Churches</a>
+      <a href="about.html" class="active">About</a>
+      <a href="#contact" onclick="event.preventDefault(); openContact()">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-about">
+    <div class="hero-eyebrow">THE END TIME MESSAGE CHURCH DIRECTORY</div>
+    <h1>About The Directory</h1>
+    <p>A digital platform established to connect believers and End Time Message assemblies worldwide for the honour and
+      glory of the Lord Jesus Christ.</p>
+  </section>
+
+  <!-- Main Content Wrap -->
+  <main class="content-wrap">
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <h3>Vision</h3>
+        <p>To establish a worldwide digital platform that connects End Time Message churches across nations, making it easier for believers to discover places of worship, fellowship and spiritual encouragement. A vision to bring churches closer through technology, overcome geographical boundaries and create a connected global Message community, all for the honour and glory of the Lord Jesus Christ.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>Mission</h3>
+        <p>To make End Time Message church information accessible, organized and available to people around the world. Through a unified digital platform, the mission is to help believers discover churches, explore church locations, access relevant information and connect with local assemblies. To use modern technology as a meaningful instrument in serving the Christian community and making church information accessible across nations.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>Purpose</h3>
+        <p>To create a reliable, accessible and comprehensive worldwide directory of End Time Message churches. Whether a believer is travelling to another country, relocating to a new city or searching for a nearby Message church, the purpose is to make that discovery simple and convenient. To build a valuable digital resource that promotes connectivity, visibility and accessibility among Message churches, while keeping the Lord Jesus Christ at the centre of its purpose.</p>
+      </div>
+    </div>
+
+    <!-- Developed & Maintained By Section -->
+    <div class="dedication-card">
+      <div class="dedication-header">
+        <span>STEWARDSHIP &amp; DEDICATION</span>
+        <h2>Developed &amp; Maintained By</h2>
+      </div>
+
+      <div class="author-badge">
+        <img class="author-photo" src="assets/william-solomon-portrait.svg" alt="A. William Solomon">
+        <strong>A. William Solomon</strong>
+        <a href="https://awilliamsolomon.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio Profile ↗</a>
+      </div>
+
+      <p>
+        Envisioned, designed, developed and maintained by <strong>A. William Solomon</strong>, with a passion for
+        technology, innovation and serving the Christian community. This initiative represents a desire to use modern
+        technology for a meaningful purpose beyond personal achievement — creating something valuable that can serve
+        believers and churches across the world. Through dedication, creativity, technical excellence and a heart for
+        service, this platform stands as an effort to contribute something meaningful to the Message community.
+      </p>
+
+      <p>
+        The intention is not to seek personal recognition, but to use the gifts, knowledge and abilities entrusted by
+        God in a way that serves others. May every line of code, every design and every effort invested in this platform
+        be a testimony of dedication and service.
+      </p>
+
+      <!-- Doxology and Scripture -->
+      <div class="doxology-box">
+        <div class="glory-statement">To God Be All The Glory.</div>
+        <div class="scripture-quote">
+          "Not unto us, O LORD, not unto us, but unto thy name give glory, for thy mercy, and for thy truth's sake."
+        </div>
+        <div class="scripture-ref">Psalm 115:1 (KJV)</div>
+      </div>
+    </div>
+
+    <!-- CTA Row -->
+    <div class="cta-row">
+      <h3>Looking for a Message Church or assembly?</h3>
+      <p style="color:#635D52; font-size:14px; margin:0; max-width:560px;">Browse our comprehensive global directory of
+        verified assemblies across nations.</p>
+      <div class="cta-btns">
+        <a href="index.html#directory" class="btn-primary">Browse Directory Churches →</a>
+        <a href="index.html" class="btn-secondary">Search Assemblies</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <section class="footer-contact" aria-label="Contact and support">
+        <div class="footer-contact-copy"><span class="footer-contact-label">Contact &amp; support</span><h2>How can we help?</h2><p>For technical issues or any other problems, email us at <a class="footer-contact-email" href="https://mail.google.com/mail/?view=cm&fs=1&to=thebornagainchristian1%40gmail.com&su=Website%20Support%20Request&body=Hello%2C%0A%0AI%20am%20experiencing%20a%20problem%20with%20the%20church%20directory.%0A%0ADetails%3A%20">thebornagainchristian1@gmail.com</a>.</p></div>
+        <div class="footer-contact-actions"><a class="footer-contact-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=thebornagainchristian1%40gmail.com&su=Website%20Support%20Request&body=Hello%2C%0A%0AI%20am%20experiencing%20a%20problem%20with%20the%20church%20directory.%0A%0ADetails%3A%20" target="_blank" rel="noopener">Email us</a></div>
+      </section>
+      <div class="footer-copy">© 2026 The End Time Message Church Directory</div>
+      <div class="footer-note">Church listings are published only after review and verification by the directory administrator.</div>
+      <div class="footer-credit"><strong>Developed and Maintained by</strong> <a
+          href="https://awilliamsolomon.vercel.app/" target="_blank" rel="noopener noreferrer">A. William Solomon</a>
+      </div>
+      <div class="footer-legal-links">
+        <a href="about.html">About</a>
+        <span>·</span>
+        <a href="#" onclick="showLegal('terms'); return false;">Terms</a>
+        <span>·</span>
+        <a href="#" onclick="showLegal('privacy'); return false;">Privacy</a>
+        <span>·</span>
+        <a href="#" onclick="showLegal('copyright'); return false;">Copyright</a>
+        <span>·</span>
+        <a href="admin-login.html?login=1">Admin Login</a>
+        <span>·</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title"><div class="modalbox contact-modalbox"><span class="footer-contact-label">Contact &amp; support</span><h2 id="contact-modal-title">How can we help?</h2><p class="contact-intro">For technical issues or any other problems, email us.</p><div class="contact-options"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=thebornagainchristian1%40gmail.com&su=Website%20Support%20Request&body=Hello%2C%0A%0AI%20am%20experiencing%20a%20problem%20with%20the%20church%20directory.%0A%0ADetails%3A%20"><strong>Email us</strong><span>For technical issues or any other problems, email thebornagainchristian1@gmail.com.</span></a></div><div class="modalactions"><button class="add" type="button" onclick="closeContact()">Close</button></div></div></div>
+
+  <!-- Legal/Information Modal -->
+  <div class="modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="modalbox" style="max-width: 580px;">
+      <h2 id="legal-modal-title" style="margin-top:0; font-family:'Cormorant Garamond',serif; color:#171614;">
+      </h2>
+      <div id="legal-modal-body" style="font-size:14px; line-height:1.7; color:#171614; margin:16px 0;">
+      </div>
+      <div class="modalactions" style="margin-top:20px">
+        <button class="add" onclick="closeLegal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Legal modal content
+    const legalTexts = {
+      legal: {
+        title: "Legal Notice",
+        body: `<p><strong>Independent Informational Directory:</strong> The End Time Message Church Directory is an independent informational and networking resource designed to assist believers worldwide in discovering and connecting with local Christian assemblies associated with the End-Time Message.</p><p>We are not a governing denominational body. Each assembly listed in this directory operates autonomously.</p>`
+      },
+      terms: {
+        title: "Terms of Use",
+        body: `<p><strong>Terms of Use:</strong> By using this directory, you agree to access information solely for lawful, spiritual, and fellowship-oriented purposes. Directory data may not be scraped or harvested for commercial advertising.</p>`
+      },
+      privacy: {
+        title: "Privacy Policy",
+        body: `<p><strong>Privacy Commitment:</strong> We respect your personal privacy. Church contact details submitted to this directory are published solely for ecclesiastical discovery. We do not sell or monetize personal information.</p>`
+      },
+      copyright: {
+        title: "Copyright Notice",
+        body: `<p>© 2026 The End Time Message Church Directory. Developed &amp; Maintained by A. William Solomon. All digital layouts and branding are protected.</p>`
+      }
+    };
+
+    function openContact() { document.getElementById('contact-modal').classList.add('show'); }
+    function closeContact() { document.getElementById('contact-modal').classList.remove('show'); }
+
+    function showLegal(type) {
+      const item = legalTexts[type];
+      if (!item) return;
+      document.getElementById('legal-modal-title').textContent = item.title;
+      document.getElementById('legal-modal-body').innerHTML = item.body;
+      document.getElementById('legal-modal').classList.add('show');
+    }
+
+    function closeLegal() {
+      document.getElementById('legal-modal').classList.remove('show');
+    }
+
+    // Modal click outside to dismiss
+    document.querySelectorAll('.modal').forEach(m => {
+      m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('show'); } });
+    });
+  </script>
+</body>
+
+</html>

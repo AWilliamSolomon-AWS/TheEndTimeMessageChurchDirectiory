@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171614">
+  <title>Admin Login | The End Time Message Church Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; --ink:#171614; --cream:#F7F4EC; --paper:#fffdf8; --gold:#B8944A; --muted:#777267; --line:#e4dccb; --red:#9b2c2c; --green:#276749; }
+    * { box-sizing:border-box; }
+    body { display:flex; flex-direction:column; margin:0; min-height:100vh; background:var(--cream); color:var(--ink); font-family:Inter,Arial,sans-serif; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:18px 6%; background:#450000; color:var(--cream); }
+    header a { color:inherit; text-decoration:none; }
+    .brand { display:flex; flex-direction:column; text-decoration:none; font-family:'Cormorant Garamond',Georgia,serif; font-size:20px; font-weight:700; line-height:1.15; }
+    .brand small { display:block; margin-top:4px; color:#D6BD82; font:700 7.5px Inter,Arial,sans-serif; letter-spacing:1.2px; text-transform:uppercase; }
+    .back { color:#d6bd82; font-size:13px; }
+    main { flex:1; width:min(1080px,92%); margin:48px auto 70px; }
+    .login-card { width:min(440px,100%); margin:5vh auto; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:34px; box-shadow:0 14px 40px #17161412; }
+    .eyebrow { color:var(--gold); font-size:11px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; }
+    h1,h2,h3 { font-family:'Cormorant Garamond',Georgia,serif; }
+    h1 { font-size:36px; line-height:1.05; margin:8px 0; }
+    .intro { color:var(--muted); font-size:14px; line-height:1.6; margin:0 0 26px; }
+    label { display:block; margin:16px 0 7px; font-size:12px; font-weight:700; }
+    input { width:100%; border:1px solid var(--line); border-radius:7px; padding:12px 13px; background:white; color:var(--ink); font:inherit; }
+    input:focus { outline:2px solid #b8944a66; border-color:var(--gold); }
+    button,.button { border:0; border-radius:7px; padding:11px 16px; background:var(--ink); color:white; font:600 14px Inter,Arial,sans-serif; cursor:pointer; }
+    button:hover,.button:hover { background:#38352e; }
+    button:disabled { opacity:.6; cursor:wait; }
+    .login-card button { width:100%; margin-top:22px; }
+    .text-button { display:block; width:auto!important; margin:16px auto 0!important; padding:4px 8px; background:transparent; color:#8a6a2e; font-size:13px; }
+    .text-button:hover { background:transparent; color:#5f481e; text-decoration:underline; }
+    .recovery-panel { display:none; margin-top:22px; padding-top:20px; border-top:1px solid var(--line); }
+    .recovery-panel.show { display:block; }
+    .recovery-panel h2 { margin:0 0 7px; font-size:26px; }
+    .recovery-panel p { margin:0 0 14px; color:var(--muted); font-size:13px; line-height:1.5; }
+    .notice { display:none; margin-top:16px; padding:11px 13px; border-radius:7px; font-size:13px; line-height:1.5; }
+    .notice.error { display:block; background:#fff0f0; color:var(--red); border:1px solid #efcaca; }
+    .notice.info { display:block; background:#edf7f0; color:var(--green); border:1px solid #c9e6d1; }
+    .dashboard { display:none; }
+    .dash-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px; margin-bottom:24px; padding:24px 26px; border:1px solid #e7dcc6; border-radius:16px; background:radial-gradient(ellipse at 90% 0%,#efe3c9 0%,#fffdf8 52%); box-shadow:0 10px 32px rgba(23,22,20,.045); }
+    .dash-head h1 { margin:5px 0 4px; font-size:clamp(30px,4vw,42px); }
+    .greeting { color:var(--muted); font-size:14px; }
+    .greeting-time { display:block; margin-top:7px; color:#9a7b3e; font-size:12px; letter-spacing:.2px; }
+    .welcome-toast { position:fixed; inset:0; z-index:50; display:grid; place-items:center; padding:24px; background:rgba(3,10,15,.72); backdrop-filter:blur(9px); opacity:0; visibility:hidden; transition:opacity .45s ease,visibility .45s ease; }
+    .welcome-toast.show { opacity:1; visibility:visible; }
+    .welcome-card { position:relative; width:min(440px,100%); overflow:hidden; padding:36px 30px 32px; border:1px solid rgba(100,208,223,.36); border-radius:20px; background:radial-gradient(ellipse at 50% -20%,rgba(52,157,177,.25),transparent 65%),linear-gradient(145deg,#12232e,#08131b); color:#f1f8fb; text-align:center; box-shadow:0 28px 100px rgba(0,0,0,.48),inset 0 1px rgba(206,245,250,.09); transform:translateY(16px) scale(.97); transition:transform .55s cubic-bezier(.2,.8,.2,1); }
+    .welcome-toast.show .welcome-card { transform:translateY(0) scale(1); }
+    .welcome-mark { display:grid; place-items:center; width:48px; height:48px; margin:0 auto 17px; border:1px solid rgba(98,219,234,.34); border-radius:50%; color:#75e4ec; background:rgba(47,128,150,.13); font-size:22px; box-shadow:0 0 28px rgba(65,217,239,.12); }
+    .welcome-card .eyebrow { color:#e0b55c; }
+    .welcome-card h2 { margin:10px 0 8px; color:#f4fbfe; font-size:clamp(30px,7vw,40px); line-height:1.05; }
+    .welcome-card p { margin:0; color:#a9bdc7; font-size:14px; line-height:1.6; }
+    .welcome-time { display:inline-block; margin-top:19px; padding:7px 12px; border:1px solid rgba(98,219,234,.2); border-radius:999px; color:#91e6eb; background:rgba(47,128,150,.12); font-size:11px; letter-spacing:.5px; }
+    @keyframes welcome-exit { to { opacity:0; transform:translateY(-8px) scale(.98); } }
+    .welcome-toast.leaving .welcome-card { animation:welcome-exit .5s ease forwards; }
+    .dash-actions { display:flex; align-items:center; gap:12px; }
+    .dash-actions button { width:auto; margin:0; }
+    @keyframes refresh-success-blink { 0%,100% { background:var(--ink); box-shadow:0 0 0 0 rgba(184,148,74,0); } 25%,65% { background:#9a762f; box-shadow:0 0 0 5px rgba(184,148,74,.22); } }
+    #refresh-button.refresh-success { animation:refresh-success-blink .7s ease-in-out 2; }
+    @media(prefers-reduced-motion:reduce) { #refresh-button.refresh-success { animation:none; background:#9a762f; } }
+    .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-bottom:18px; }
+    .stat,.panel { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:20px; }
+    .stat { position:relative; overflow:hidden; }
+    .stat:after { content:''; position:absolute; inset:0 auto 0 0; width:3px; background:var(--gold); opacity:.8; }
+    .stat span { color:var(--muted); font-size:12px; }
+    .stat strong { display:block; margin-top:8px; font:600 32px 'Cormorant Garamond',Georgia,serif; }
+    .panel { margin-top:18px; }
+    .panel h2 { font-size:26px; margin:0 0 15px; }
+    .analytics-grid { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(260px,1fr); gap:16px; margin:18px 0 2px; }
+    .analytics-grid .panel { margin:0; }
+    .stat { background:linear-gradient(145deg,#17232e,#0c151d); border-color:#294354; color:#eff8fc; box-shadow:0 10px 26px rgba(5,14,22,.12); }
+    .stat:after { background:#41d9ef; box-shadow:0 0 14px rgba(65,217,239,.72); }
+    .stat span { color:#9ab1bf; }
+    .stat strong { color:#f5fbff; text-shadow:0 0 16px rgba(65,217,239,.17); }
+    .analytics-grid .panel,.analysis-panel { background:radial-gradient(ellipse at 92% 0%,rgba(24,76,97,.3),transparent 48%),linear-gradient(150deg,#111d27,#0a1219); border-color:#294354; color:#edf6fa; box-shadow:0 14px 34px rgba(5,14,22,.16); }
+    .analytics-grid .panel h2,.analysis-panel h2 { color:#f0f8fc; }
+    .analytics-grid .panel-heading p { color:#92aab8; }
+    .analytics-grid .period-tag { color:#69e2f1; background:rgba(44,162,186,.12); border-color:rgba(65,217,239,.27); }
+    .insight { border-bottom-color:#263b49; }
+    .insight span { color:#9ab1bf; }
+    .insight strong { color:#f1f7fa; }
+    .insight-note { background:rgba(47,123,144,.14); color:#c2e5ed; border:1px solid rgba(65,217,239,.16); }
+    .chart-gridline { stroke:#243a48; }
+    .chart-label { fill:#9ab1bf; }
+    .chart-area { fill:url(#viewsFill); }
+    .chart-line { fill:none; stroke:#41d9ef; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; filter:drop-shadow(0 0 4px rgba(65,217,239,.38)); }
+    .chart-dot { fill:#10202a; stroke:#f0b95a; stroke-width:2; }
+    .analysis-panel .views th,.analysis-panel .views td { border-bottom-color:#263b49; color:#dbe8ee; }
+    .analysis-panel .views th { color:#91aab8; }
+    .panel-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .panel-heading p { margin:2px 0 0; color:var(--muted); font-size:12px; }
+    .period-tag { color:#8a6a2e; background:#f5eddd; border:1px solid #eadbbd; border-radius:999px; padding:6px 10px; font-size:11px; white-space:nowrap; }
+    #views-chart { width:100%; min-height:210px; display:block; overflow:visible; margin-top:10px; }
+    .chart-gridline { stroke:#eee7da; stroke-width:1; }
+    .chart-label { fill:#827b6e; font:11px Inter,Arial,sans-serif; }
+    .chart-area { fill:url(#viewsFill); }
+    .chart-line { fill:none; stroke:#a58036; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .chart-dot { fill:#fffdf8; stroke:#a58036; stroke-width:2; }
+    .chart-dot { cursor:pointer; transition:r .15s ease,stroke-width .15s ease; }
+    .chart-dot:hover,.chart-dot:focus,.chart-dot.selected { r:5.5; stroke-width:3; outline:none; }
+    .chart-point-detail { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:42px; margin:0 0 4px; padding:9px 12px; border:1px solid #294858; border-radius:8px; background:rgba(10,24,33,.76); color:#9ab1bf; font-size:12px; }
+    .chart-point-detail strong { color:#eaf7fb; font-size:13px; }
+    .insight-list { display:grid; gap:11px; }
+    .insight { display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-bottom:1px solid #eee7da; }
+    .insight:last-child { border-bottom:0; padding-bottom:0; }
+    .insight span { color:var(--muted); font-size:12px; }
+    .insight strong { text-align:right; font-size:13px; }
+    .insight-note { margin:14px 0 0; padding:12px; border-radius:8px; background:#f7f3e9; color:#65583e; font-size:12px; line-height:1.5; }
+    .analytics-grid .insight { border-bottom-color:#263b49; }
+    .analytics-grid .insight span { color:#9ab1bf; }
+    .analytics-grid .insight strong { color:#f1f7fa; }
+    .analytics-grid #views-change[data-trend="up"] { color:#53e2ef; }
+    .analytics-grid #views-change[data-trend="down"] { color:#ff9b83; }
+    .analytics-grid #views-change[data-trend="flat"] { color:#b3c4cc; }
+    .analytics-grid .insight-note { background:rgba(47,123,144,.14); color:#c2e5ed; border:1px solid rgba(65,217,239,.16); }
+    .analytics-grid .chart-gridline { stroke:#243a48; }
+    .analytics-grid .chart-label { fill:#9ab1bf; }
+    .analytics-grid .chart-line { fill:none; stroke:#41d9ef; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; filter:drop-shadow(0 0 4px rgba(65,217,239,.38)); }
+    .analytics-grid .chart-dot { fill:#10202a; stroke:#f0b95a; stroke-width:2; }
+    .analysis-panel .views th,.analysis-panel .views td { border-bottom-color:#263b49; color:#dbe8ee; }
+    .analysis-panel .views th { color:#91aab8; }
+    .queue { display:grid; gap:12px; }
+    .church { border:1px solid var(--line); border-radius:9px; padding:16px; display:grid; gap:8px; }
+    .church h3 { font-size:22px; margin:0; }
+    .church p { margin:0; color:var(--muted); font-size:13px; line-height:1.5; white-space:pre-wrap; }
+    .church-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:5px; }
+    .church-actions button { width:auto; margin:0; font-size:12px; padding:9px 12px; }
+    .church-actions .approve { background:#276749; }
+    .church-actions .reject { background:#8c5b19; }
+    .church-actions .delete { background:#9b2c2c; }
+    .all-churches-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 14px; }
+    .all-churches-toolbar input { width:min(360px,100%); border:1px solid var(--line); border-radius:7px; padding:10px 12px; background:#fff; color:var(--ink); font:13px Inter,Arial,sans-serif; }
+    .all-churches-count { color:var(--muted); font-size:12px; white-space:nowrap; }
+    .church-directory { display:grid; gap:8px; }
+    .church-directory-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(140px,.45fr) auto; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .church-directory-name { font-size:14px; font-weight:600; overflow-wrap:anywhere; }
+    .church-directory-location { color:var(--muted); font-size:12px; line-height:1.45; }
+    .church-directory-status { display:inline-block; margin-top:4px; color:#8a6a2e; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.6px; }
+    .church-directory-row .church-actions { margin:0; flex-wrap:nowrap; }
+    .church-directory-row .church-actions button { padding:8px 10px; }
+    .church-pagination { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:14px; }
+    .church-pagination button { width:auto; margin:0; padding:8px 12px; font-size:12px; }
+    .church-pagination button:disabled { opacity:.45; cursor:not-allowed; }
+    .church-pagination span { color:var(--muted); font-size:12px; }
+    .empty { padding:20px; text-align:center; color:var(--muted); border:1px dashed var(--line); border-radius:8px; }
+    .views { width:100%; border-collapse:collapse; font-size:13px; }
+    .views th,.views td { text-align:left; border-bottom:1px solid var(--line); padding:9px 6px; }
+    .views th { color:var(--muted); font-weight:600; }
+    .views td:last-child,.views th:last-child { text-align:right; }
+    .edit-overlay { display:none; position:fixed; inset:0; z-index:20; align-items:center; justify-content:center; padding:18px; background:#171614b8; }
+    .edit-overlay.show { display:flex; }
+    .edit-dialog { width:min(720px,100%); max-height:92vh; overflow:auto; background:var(--paper); border:1px solid var(--line); border-radius:13px; padding:24px; box-shadow:0 24px 70px #0005; }
+    .edit-dialog h2 { margin:0 0 4px; font-size:30px; }
+    .edit-dialog p { margin:0 0 18px; color:var(--muted); font-size:13px; }
+    .edit-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 14px; }
+    .edit-grid .wide { grid-column:1/-1; }
+    .edit-grid input,.edit-grid textarea { width:100%; border:1px solid var(--line); border-radius:7px; padding:10px 11px; background:white; color:var(--ink); font:14px Inter,Arial,sans-serif; }
+    .edit-grid textarea { min-height:90px; resize:vertical; }
+    .edit-actions { display:flex; justify-content:flex-end; gap:9px; margin-top:18px; }
+    .edit-actions button { width:auto; margin:0; }
+    .edit-actions .cancel { background:#e8e1d3; color:var(--ink); }
+    footer { margin-top:auto; background:#450000; color:var(--cream); font-size:12px; text-align:center; padding:22px 6%; }
+    footer a { color:#D6BD82; text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+    body.admin-active {
+      --command-bg:#071019;
+      --command-panel:#0d1a24;
+      --command-panel-raised:#112430;
+      --command-border:#284756;
+      --command-text:#edf7fb;
+      --command-muted:#91a9b7;
+      background-color:var(--command-bg);
+      background-image:radial-gradient(ellipse at 50% -15%,rgba(35,105,128,.28),transparent 55%),linear-gradient(rgba(49,105,125,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(49,105,125,.055) 1px,transparent 1px);
+      background-size:auto,34px 34px,34px 34px;
+      color:var(--command-text);
+    }
+    body.admin-active header { display:none; }
+    body.admin-active .brand { letter-spacing:.3px; }
+    body.admin-active .brand small { color:#62dbea; }
+    body.admin-active header .brand { display:none; }
+    body.admin-active .back { color:#80dce8; }
+    body.admin-active main { width:min(1420px,94%); margin:32px auto 60px; }
+    body.admin-active .dash-head { position:relative; overflow:hidden; margin-bottom:14px; border:1px solid #2d5362; border-radius:15px; background:radial-gradient(ellipse at 90% 0%,rgba(47,128,150,.26),transparent 43%),linear-gradient(135deg,#12232e,#0b151d 72%); box-shadow:0 18px 46px rgba(0,0,0,.24),inset 0 1px rgba(148,222,236,.08); }
+    body.admin-active .dash-head::after { content:''; position:absolute; left:26px; right:26px; bottom:0; height:1px; background:linear-gradient(90deg,transparent,#48d7e8,rgba(184,148,74,.8),transparent); opacity:.8; }
+    body.admin-active .dash-head h1 { color:#f2fbff; text-shadow:0 0 26px rgba(65,217,239,.13); }
+    body.admin-active .dash-head .eyebrow { color:#e0b55c; }
+    body.admin-active .greeting { color:#a8bdc8; }
+    .system-indicator { display:inline-flex; align-items:center; gap:8px; color:#87dce8; font-size:10px; font-weight:700; letter-spacing:1px; white-space:nowrap; }
+    .system-indicator i { width:7px; height:7px; border-radius:50%; background:#50e0bb; box-shadow:0 0 12px rgba(80,224,187,.75); }
+    .admin-quick-nav { position:sticky; top:8px; z-index:5; display:flex; flex-wrap:wrap; gap:7px; margin:0 0 18px; padding:9px; border:1px solid #203b49; border-radius:11px; background:rgba(8,17,24,.93); box-shadow:0 8px 22px rgba(0,0,0,.2); backdrop-filter:blur(12px); }
+    .admin-quick-nav a { min-height:36px; display:inline-flex; align-items:center; padding:0 13px; border:1px solid transparent; border-radius:7px; color:#a9bdc7; font-size:11px; font-weight:600; letter-spacing:.2px; text-decoration:none; transition:background .2s,border-color .2s,color .2s; }
+    .admin-quick-nav a:hover,.admin-quick-nav a:focus-visible { outline:none; border-color:#315c6d; background:#122b37; color:#8be8f3; }
+    body.admin-active .stat { border-color:#284756; background:linear-gradient(145deg,#152630,#0b151d); box-shadow:0 12px 28px rgba(0,0,0,.18),inset 0 1px rgba(160,224,236,.055); }
+    body.admin-active .analytics-grid .panel,body.admin-active .analysis-panel { border-color:#2b5060; box-shadow:0 16px 36px rgba(0,0,0,.2),inset 0 1px rgba(160,224,236,.045); }
+    body.admin-active .dashboard > .panel:not(.analysis-panel) { border-color:#24414f; background:linear-gradient(145deg,rgba(16,31,41,.98),rgba(10,20,28,.98)); color:var(--command-text); box-shadow:0 14px 30px rgba(0,0,0,.17); }
+    body.admin-active .dashboard > .panel:not(.analysis-panel) h2 { color:#edf7fb; }
+    body.admin-active .dashboard > .panel:not(.analysis-panel) .panel-heading p { color:var(--command-muted); }
+    body.admin-active .church { border-color:#2a4856; background:linear-gradient(140deg,#12232d,#0d1921); box-shadow:inset 0 1px rgba(158,218,232,.04); }
+    body.admin-active .church h3 { color:#f0f8fb; }
+    body.admin-active .church p { color:#9db2bd; }
+    body.admin-active .church-actions button,body.admin-active .church-pagination button { border:1px solid #345666; background:#142a35; color:#dff5fa; }
+    body.admin-active .church-actions button:hover,body.admin-active .church-pagination button:hover:not(:disabled) { background:#1a3947; border-color:#58cfe0; }
+    body.admin-active .church-actions .approve { border-color:#2c7466; background:#10332f; color:#83e7cd; }
+    body.admin-active .church-actions .reject { border-color:#8a6730; background:#342712; color:#f1c46f; }
+    body.admin-active .church-actions .delete { border-color:#7b3a3a; background:#351b20; color:#ffaca4; }
+    body.admin-active .all-churches-toolbar input { border-color:#345362; background:#0b151d; color:#edf7fb; }
+    body.admin-active .all-churches-toolbar input::placeholder { color:#8097a4; }
+    body.admin-active .all-churches-count,body.admin-active .church-directory-location,body.admin-active .church-pagination span { color:#9ab0bb; }
+    body.admin-active .church-directory-row { border-color:#294653; background:linear-gradient(120deg,#12232d,#0c171f); }
+    body.admin-active .church-directory-row:hover { border-color:#3d8292; box-shadow:0 0 18px rgba(65,217,239,.09); }
+    body.admin-active .church-directory-name { color:#eef8fb; }
+    body.admin-active .church-directory-status { color:#e4bb67; }
+    body.admin-active .empty { border-color:#345160; color:#a4bac5; background:rgba(11,23,31,.65); }
+    body.admin-active .analysis-panel .views th,body.admin-active .analysis-panel .views td { border-bottom-color:#29414e; color:#d9e8ee; }
+    body.admin-active .analysis-panel .views th { color:#8faab7; }
+    body.admin-active .notice.info { border-color:#276b70; background:#102b31; color:#95e4e6; }
+    body.admin-active .notice.error { border-color:#744349; background:#301c23; color:#ffb0a7; }
+    body.admin-active #refresh-button { border-color:#3b7785; background:linear-gradient(135deg,#15404b,#10232e); color:#a4f2f5; }
+    body.admin-active #refresh-button:hover { background:#1a4e5b; }
+    body.admin-active #signout-button { border:1px solid #64434a; background:#24191d; color:#f2c0b8; }
+    body.admin-active #signout-button:hover { background:#3c242a; }
+    body.admin-active .edit-overlay { background:rgba(2,8,12,.82); backdrop-filter:blur(8px); }
+    body.admin-active .edit-dialog { border-color:#345565; background:linear-gradient(145deg,#11232d,#0a151d); color:#edf7fb; }
+    body.admin-active .edit-dialog h2 { color:#f4fbfe; }
+    body.admin-active .edit-dialog p { color:#a0b5c0; }
+    body.admin-active .edit-grid input,body.admin-active .edit-grid textarea { border-color:#365665; background:#09141c; color:#edf7fb; }
+    body.admin-active .edit-grid label { color:#c9d9df; }
+    body.admin-active .edit-actions .cancel { border:1px solid #405665; background:#1b2b34; color:#dce9ee; }
+    body.admin-active footer { display:none; }
+    body.admin-active #dashboard-notice { color:#edf7fb; }
+    @media(max-width:800px) { .stats { grid-template-columns:repeat(2,minmax(0,1fr)); } .analytics-grid { grid-template-columns:1fr; } }
+    @media(prefers-reduced-motion:reduce) { .welcome-toast,.welcome-card { transition:none; } .welcome-toast.leaving .welcome-card { animation:none; } }
+    @media(max-width:650px) { header { padding:16px 4%; } .brand { font-size:17px; } .brand small { font-size:6.5px; letter-spacing:.9px; } main { margin-top:28px; } .login-card { padding:26px 21px; } .stats { grid-template-columns:1fr; } .dash-head { align-items:flex-start; padding:20px; } .all-churches-toolbar { align-items:stretch; flex-direction:column; } .all-churches-toolbar input { width:100%; } .church-directory-row { grid-template-columns:minmax(0,1fr) auto; gap:7px 10px; } .church-directory-location { grid-column:1; } .church-directory-row .church-actions { grid-column:2; grid-row:1 / span 2; flex-direction:column; } body.admin-active main { width:94%; margin:20px auto 40px; } body.admin-active header { align-items:flex-start; } body.admin-active .dash-actions { width:100%; justify-content:flex-start; flex-wrap:wrap; gap:8px; } .admin-quick-nav { top:4px; gap:4px; padding:6px; } .admin-quick-nav a { min-height:34px; padding:0 10px; font-size:10px; } }
+    /* Shared interaction feedback for admin controls */
+    button:not(:disabled), .button {
+      transition:background-color .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;
+    }
+    button:not(:disabled):hover, .button:hover {
+      transform:translateY(-1px);
+      box-shadow:0 7px 16px rgba(0,0,0,.22);
+    }
+    button:not(:disabled):active, .button:active {
+      transform:translateY(0) scale(.98);
+      box-shadow:none;
+    }
+    button:focus-visible, .button:focus-visible {
+      outline:3px solid #62dbea;
+      outline-offset:3px;
+    }
+    @media(prefers-reduced-motion:reduce) {
+      button, .button { transition:none!important; }
+      button:hover, .button:hover, button:active, .button:active { transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html">
+      <span>The End Time Message Church Directory</span>
+      <small>Connecting End Time Message Churches Worldwide</small>
+    </a>
+    <a class="back" href="index.html">← Back to directory</a>
+  </header>
+  <main>
+    <div class="welcome-toast" id="welcome-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+      <div class="welcome-card">
+        <h2 id="welcome-toast-title">Good morning</h2>
+        <p>A. William Solomon<br>Welcome back to your admin command center.</p>
+      </div>
+    </div>
+    <section class="login-card" id="login-panel" aria-labelledby="login-title">
+      <h1 id="login-title">Admin Login</h1>
+      <p class="intro">Authorized developer access only.</p>
+      <form id="login-form">
+        <label for="admin-username">Username</label>
+        <input id="admin-username" name="directory_admin_username" type="text" autocomplete="off" required placeholder="Enter your username">
+        <label for="admin-password">Password</label>
+        <input id="admin-password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+        <button id="login-button" type="submit">Sign In</button>
+      </form>
+      <div id="login-notice" class="notice" role="status" aria-live="polite"></div>
+      <button class="text-button" id="forgot-password-button" type="button">Forgot password?</button>
+      <section class="recovery-panel" id="recovery-panel" aria-labelledby="recovery-title">
+        <h2 id="recovery-title">Reset your password</h2>
+        <p>Enter the email address linked to your administrator account and we’ll send you a secure reset link.</p>
+        <form id="recovery-form">
+          <label for="recovery-email">Email address</label>
+          <input id="recovery-email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
+          <button id="recovery-submit" type="submit">Send reset link</button>
+        </form>
+        <div id="recovery-notice" class="notice" role="status" aria-live="polite"></div>
+      </section>
+    </section>
+
+    <section class="login-card" id="new-password-panel" aria-labelledby="new-password-title" style="display:none">
+      <h1 id="new-password-title">Choose a new password</h1>
+      <p class="intro">Set a new password for your administrator account.</p>
+      <form id="new-password-form">
+        <label for="new-password">New password</label>
+        <input id="new-password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
+        <label for="confirm-password">Confirm new password</label>
+        <input id="confirm-password" type="password" autocomplete="new-password" minlength="8" required placeholder="Enter it again">
+        <button id="new-password-submit" type="submit">Update password</button>
+      </form>
+      <div id="new-password-notice" class="notice" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="dashboard" id="dashboard" aria-labelledby="dashboard-title">
+      <div class="dash-head">
+        <div><div class="eyebrow">Directory operations · administration</div><h1 id="dashboard-title">Admin Command Center</h1><div class="greeting" id="welcome-message">Welcome back, A. William Solomon. Here’s your directory at a glance.</div></div>
+        <div class="dash-actions"><span class="system-indicator"><i aria-hidden="true"></i> SESSION ACTIVE</span><button id="refresh-button" type="button">Refresh</button><button id="signout-button" type="button">Sign Out</button></div>
+      </div>
+      <nav class="admin-quick-nav" aria-label="Admin sections">
+        <a href="#analytics-section">Intelligence</a>
+        <a href="#pending-section">Review queue</a>
+        <a href="#edits-section">Change requests</a>
+        <a href="#churches-section">Directory registry</a>
+        <a href="#activity-section">Activity log</a>
+      </nav>
+      <div class="stats">
+        <div class="stat"><span>Awaiting review</span><strong id="pending-count">0</strong></div>
+        <div class="stat"><span>Approved churches</span><strong id="approved-count">0</strong></div>
+        <div class="stat"><span>Total directory listings</span><strong id="listing-count">0</strong></div>
+        <div class="stat"><span id="view-count-label">Directory views · last 30 days</span><strong id="view-count">0</strong></div>
+      </div>
+      <div class="analytics-grid" id="analytics-section">
+        <section class="panel"><div class="panel-heading"><div><h2>Traffic Analysis</h2><p id="views-chart-caption">Daily page views for the selected period</p></div><div style="display:flex;align-items:center;gap:10px"><select id="views-range" aria-label="Choose analytics date range" style="border:1px solid #386274;border-radius:999px;padding:7px 10px;background:#142733;color:#8be8f3;font:11px Inter,Arial,sans-serif"><option value="7">Last 7 days</option><option value="30" selected>Last 30 days</option><option value="90">Last 90 days</option><option value="365">Last year</option></select></div></div><svg id="views-chart" viewBox="0 0 720 230" role="img" aria-label="Daily directory views for the last 30 days"></svg><div class="chart-point-detail" id="chart-point-detail" role="status" aria-live="polite"><span>Select a point to see that day’s activity.</span></div></section>
+        <section class="panel"><h2>System Intelligence</h2><div class="insight-list"><div class="insight"><span id="views-period-label">Views in the last 30 days</span><strong id="views-week">0</strong></div><div class="insight"><span id="views-comparison-label">Change vs. previous 30 days</span><strong id="views-change">—</strong></div><div class="insight"><span>Average views per day</span><strong id="views-average">0</strong></div><div class="insight"><span>Review items in queue</span><strong id="review-queue-count">0</strong></div><div class="insight"><span>Countries represented</span><strong id="country-count">0</strong></div></div><p class="insight-note" id="views-insight">Your directory activity summary will appear here.</p></section>
+      </div>
+      <section class="panel" id="pending-section"><h2>Review Queue</h2><div class="queue" id="pending-list"><div class="empty">Loading submissions…</div></div></section>
+      <section class="panel" id="edits-section"><h2>Change Requests</h2><div class="queue" id="suggestions-list"><div class="empty">Loading suggestions…</div></div></section>
+      <section class="panel" id="churches-section" aria-labelledby="all-churches-title">
+        <div class="panel-heading"><div><h2 id="all-churches-title">Directory Registry</h2><p>Search listings and browse a few at a time.</p></div></div>
+        <div class="all-churches-toolbar"><input id="church-search" type="search" placeholder="Search name, city, or country" aria-label="Search all church listings"><span class="all-churches-count" id="all-churches-count"></span></div>
+        <div class="church-directory" id="all-churches"><div class="empty">Loading churches…</div></div>
+        <div class="church-pagination" id="church-pagination" aria-label="Church listing pages"></div>
+      </section>
+      <section class="panel analysis-panel" id="activity-section"><h2>Daily Activity Log</h2><div id="view-list"></div></section>
+      <div id="dashboard-notice" class="notice" role="status" aria-live="polite"></div>
+    </section>
+    <div class="edit-overlay" id="edit-overlay" role="dialog" aria-modal="true" aria-labelledby="edit-title">
+      <form class="edit-dialog" id="edit-form">
+        <h2 id="edit-title">Edit Church Details</h2>
+        <p>Update the listing information below. Required fields are marked in the form.</p>
+        <div class="edit-grid">
+          <div><label for="edit-name">Church / ministry name *</label><input id="edit-name" name="name" required maxlength="160"></div>
+          <div><label for="edit-pastor">Pastor</label><input id="edit-pastor" name="pastor" maxlength="160"></div>
+          <div><label for="edit-country">Country *</label><input id="edit-country" name="country" required maxlength="100"></div>
+          <div><label for="edit-state">State / region</label><input id="edit-state" name="state" maxlength="100"></div>
+          <div><label for="edit-city">City *</label><input id="edit-city" name="city" required maxlength="100"></div>
+          <div><label for="edit-zip">ZIP / postal code</label><input id="edit-zip" name="zip" maxlength="40"></div>
+          <div class="wide"><label for="edit-address">Address</label><input id="edit-address" name="address" maxlength="300"></div>
+          <div><label for="edit-email">Email</label><input id="edit-email" name="email" type="email" maxlength="254"></div>
+          <div><label for="edit-phone">Phone</label><input id="edit-phone" name="phone" maxlength="50"></div>
+          <div><label for="edit-fax">Fax</label><input id="edit-fax" name="fax" maxlength="50"></div>
+          <div><label for="edit-website">Website</label><input id="edit-website" name="website" maxlength="300"></div>
+          <div class="wide"><label for="edit-description">Description</label><textarea id="edit-description" name="description" maxlength="1200"></textarea></div>
+        </div>
+        <div id="edit-notice" class="notice" role="status" aria-live="polite"></div>
+        <div class="edit-actions"><button class="cancel" id="cancel-edit" type="button">Cancel</button><button id="save-edit" type="submit">Save Changes</button></div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2026 The End Time Message Church Directory</div>
+  </footer>
+
+  <script>
+    const PROJECT_URL = 'https://rxztnnttbxswxyhiceip.supabase.co';
+    const DIRECTORY_API = `${PROJECT_URL}/functions/v1/church-directory`;
+    const PUBLISHABLE_KEY = 'sb_publishable_PCZB9w9d2R3FsshK4PtdaA_0euJlZ1_';
+    let accessToken = '';
+    let allChurchesData = [];
+    let allChurchesPage = 1;
+    const ALL_CHURCHES_PAGE_SIZE = 8;
+    let selectedAnalyticsDays = 30;
+
+    function updateGreeting() {
+      const timeZone = 'Asia/Kolkata';
+      const hourPart = new Intl.DateTimeFormat('en-IN', { hour: '2-digit', hourCycle: 'h23', timeZone }).formatToParts(new Date()).find(part => part.type === 'hour');
+      const hour = Number(hourPart?.value) % 24;
+      const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+      document.getElementById('welcome-message').textContent = `${greeting}, A. William Solomon. Here’s your directory at a glance.`;
+    }
+    function showWelcomeToast() {
+      const timeZone = 'Asia/Kolkata';
+      const hourPart = new Intl.DateTimeFormat('en-IN', { hour: '2-digit', hourCycle: 'h23', timeZone }).formatToParts(new Date()).find(part => part.type === 'hour');
+      const hour = Number(hourPart?.value) % 24;
+      const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+      const toast = document.getElementById('welcome-toast');
+      document.getElementById('welcome-toast-title').textContent = greeting;
+      toast.setAttribute('aria-hidden', 'false');
+      requestAnimationFrame(() => toast.classList.add('show'));
+      window.setTimeout(() => {
+        toast.classList.add('leaving');
+        toast.classList.remove('show');
+        window.setTimeout(() => { toast.setAttribute('aria-hidden', 'true'); toast.classList.remove('leaving'); }, 500);
+      }, 2800);
+    }
+    updateGreeting();
+    setInterval(updateGreeting, 60_000);
+
+    function showNotice(element, message, kind = 'error') {
+      element.textContent = message;
+      element.className = `notice ${kind}`;
+    }
+
+    document.getElementById('forgot-password-button').addEventListener('click', () => {
+      const panel = document.getElementById('recovery-panel');
+      panel.classList.toggle('show');
+      if (panel.classList.contains('show')) document.getElementById('recovery-email').focus();
+    });
+
+    document.getElementById('recovery-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const button = document.getElementById('recovery-submit');
+      const notice = document.getElementById('recovery-notice');
+      button.disabled = true; button.textContent = 'Sending…'; notice.className = 'notice';
+      try {
+        const callback = `${window.location.origin}${window.location.pathname}`;
+        const response = await fetch(`${PROJECT_URL}/auth/v1/recover?redirect_to=${encodeURIComponent(callback)}`, {
+          method: 'POST',
+          headers: { apikey: PUBLISHABLE_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: document.getElementById('recovery-email').value.trim() })
+        });
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          throw new Error(error.msg || error.message || 'The reset email could not be sent. Please try again.');
+        }
+        showNotice(notice, 'If an administrator account uses that email, a secure password reset link has been sent.', 'info');
+      } catch (error) { showNotice(notice, error.message); }
+      finally { button.disabled = false; button.textContent = 'Send reset link'; }
+    });
+
+    function handlePasswordRecovery() {
+      const hash = new URLSearchParams(window.location.hash.slice(1));
+      const accessTokenFromLink = hash.get('access_token');
+      if (hash.get('type') !== 'recovery' || !accessTokenFromLink) return false;
+      document.getElementById('login-panel').style.display = 'none';
+      document.getElementById('new-password-panel').style.display = 'block';
+      document.querySelector('main').style.marginTop = '8vh';
+      window.history.replaceState({}, '', `${window.location.pathname}${window.location.search}`);
+      document.getElementById('new-password-form').addEventListener('submit', async event => {
+        event.preventDefault();
+        const password = document.getElementById('new-password').value;
+        const confirmation = document.getElementById('confirm-password').value;
+        const button = document.getElementById('new-password-submit');
+        const notice = document.getElementById('new-password-notice');
+        if (password !== confirmation) { showNotice(notice, 'The passwords do not match.'); return; }
+        button.disabled = true; button.textContent = 'Updating…'; notice.className = 'notice';
+        try {
+          const response = await fetch(`${PROJECT_URL}/auth/v1/user`, {
+            method: 'PUT',
+            headers: { apikey: PUBLISHABLE_KEY, Authorization: `Bearer ${accessTokenFromLink}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password })
+          });
+          if (!response.ok) {
+            const error = await response.json().catch(() => ({}));
+            throw new Error(error.msg || error.message || 'Your password could not be updated. Request a new reset link and try again.');
+          }
+          showNotice(notice, 'Your password has been updated. Return to the login page and sign in with your new password.', 'info');
+          document.getElementById('new-password-form').reset();
+        } catch (error) { showNotice(notice, error.message); }
+        finally { button.disabled = false; button.textContent = 'Update password'; }
+      });
+      return true;
+    }
+
+    async function api(action, method = 'GET', body, params = {}) {
+      const query = new URLSearchParams({ action, ...Object.fromEntries(Object.entries(params).map(([key, value]) => [key, String(value)])) });
+      const response = await fetch(`${DIRECTORY_API}?${query}`, {
+        method,
+        cache: 'no-store',
+        headers: {
+          apikey: PUBLISHABLE_KEY,
+          Authorization: `Bearer ${accessToken || PUBLISHABLE_KEY}`,
+          ...(body ? { 'Content-Type': 'application/json' } : {})
+        },
+        ...(body ? { body: JSON.stringify(body) } : {})
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'The request could not be completed.');
+      return result;
+    }
+
+    function addText(parent, tag, value, className) {
+      const element = document.createElement(tag);
+      element.textContent = value || '—';
+      if (className) element.className = className;
+      parent.append(element);
+      return element;
+    }
+
+    function renderChurches(churches) {
+      const list = document.getElementById('pending-list');
+      list.replaceChildren();
+      if (!churches.length) {
+        addText(list, 'div', 'There are no churches awaiting review.', 'empty');
+        return;
+      }
+      for (const church of churches) {
+        const card = document.createElement('article');
+        card.className = 'church';
+        addText(card, 'h3', church.name);
+        addText(card, 'p', `${church.city || ''}${church.state ? `, ${church.state}` : ''}, ${church.country || ''} · Pastor: ${church.pastor || '—'}`);
+        addText(card, 'p', `Address: ${church.address || '—'}${church.zip ? `, ${church.zip}` : ''}\nPhone: ${church.phone || '—'} · Email: ${church.email || '—'}\nWebsite: ${church.website || '—'}\nSubmitted: ${church.created_at ? new Date(church.created_at).toLocaleString() : '—'}`);
+        if (church.description) addText(card, 'p', church.description);
+        const actions = document.createElement('div');
+        actions.className = 'church-actions';
+        for (const [label, status, style] of [['Approve', 'approved', 'approve'], ['Reject', 'rejected', 'reject']]) {
+          const button = document.createElement('button');
+          button.type = 'button'; button.className = style; button.textContent = label;
+          button.addEventListener('click', () => reviewChurch(church.id, status, church.name, button));
+          actions.append(button);
+        }
+        const remove = document.createElement('button');
+        remove.type = 'button'; remove.className = 'delete'; remove.textContent = 'Delete';
+        remove.addEventListener('click', () => deleteChurch(church.id, church.name, remove));
+        actions.append(remove);
+        card.append(actions); list.append(card);
+      }
+    }
+
+    function renderAllChurches(churches) {
+      allChurchesData = churches;
+      renderAllChurchesPage();
+    }
+
+    function renderAllChurchesPage() {
+      const list = document.getElementById('all-churches');
+      list.replaceChildren();
+      const query = (document.getElementById('church-search').value || '').trim().toLowerCase();
+      const matches = allChurchesData.filter(church => `${church.name || ''} ${church.city || ''} ${church.state || ''} ${church.country || ''} ${church.status || ''}`.toLowerCase().includes(query));
+      const totalPages = Math.max(1, Math.ceil(matches.length / ALL_CHURCHES_PAGE_SIZE));
+      allChurchesPage = Math.min(allChurchesPage, totalPages);
+      document.getElementById('all-churches-count').textContent = `${matches.length} ${matches.length === 1 ? 'listing' : 'listings'}`;
+      if (!matches.length) {
+        addText(list, 'div', allChurchesData.length ? 'No listings match your search.' : 'No church listings are available.', 'empty');
+        renderChurchPagination(0, 1);
+        return;
+      }
+      const start = (allChurchesPage - 1) * ALL_CHURCHES_PAGE_SIZE;
+      for (const church of matches.slice(start, start + ALL_CHURCHES_PAGE_SIZE)) {
+        const row = document.createElement('article'); row.className = 'church-directory-row';
+        const name = document.createElement('div');
+        addText(name, 'div', church.name, 'church-directory-name');
+        addText(name, 'span', church.status || 'unknown', 'church-directory-status');
+        addText(row, 'div', `${church.city || ''}${church.state ? `, ${church.state}` : ''}${church.country ? ` · ${church.country}` : ''}`, 'church-directory-location');
+        row.prepend(name);
+        const actions = document.createElement('div'); actions.className = 'church-actions';
+        const edit = document.createElement('button'); edit.type = 'button'; edit.textContent = 'Edit';
+        edit.addEventListener('click', () => openEditModal(church)); actions.append(edit);
+        const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'delete'; remove.textContent = 'Delete';
+        remove.addEventListener('click', () => deleteChurch(church.id, church.name, remove)); actions.append(remove);
+        row.append(actions); list.append(row);
+      }
+      renderChurchPagination(matches.length, totalPages);
+    }
+
+    function renderChurchPagination(total, totalPages) {
+      const pager = document.getElementById('church-pagination');
+      pager.replaceChildren();
+      if (!total) return;
+      const previous = document.createElement('button'); previous.type = 'button'; previous.textContent = 'Previous'; previous.disabled = allChurchesPage <= 1;
+      previous.addEventListener('click', () => { allChurchesPage--; renderAllChurchesPage(); });
+      const label = document.createElement('span'); label.textContent = `Page ${allChurchesPage} of ${totalPages}`;
+      const next = document.createElement('button'); next.type = 'button'; next.textContent = 'Next'; next.disabled = allChurchesPage >= totalPages;
+      next.addEventListener('click', () => { allChurchesPage++; renderAllChurchesPage(); });
+      pager.append(previous, label, next);
+    }
+
+    document.getElementById('church-search').addEventListener('input', () => { allChurchesPage = 1; renderAllChurchesPage(); });
+
+    function renderSuggestions(suggestions, churches) {
+      const list = document.getElementById('suggestions-list');
+      list.replaceChildren();
+      if (!suggestions.length) { addText(list, 'div', 'There are no edit suggestions awaiting review.', 'empty'); return; }
+      const labels = { name:'Church name', pastor:'Pastor', country:'Country', state:'State / region', city:'City', address:'Address', zip:'ZIP / postal code', email:'Email', phone:'Phone', fax:'Fax', website:'Website', description:'Description' };
+      for (const suggestion of suggestions) {
+        const church = churches.find(item => String(item.id) === String(suggestion.church_id));
+        const card = document.createElement('article'); card.className = 'church';
+        addText(card, 'h3', church?.name || 'Church listing');
+        addText(card, 'p', `Suggested ${suggestion.created_at ? new Date(suggestion.created_at).toLocaleString() : ''}`);
+        const changes = suggestion.changes || {};
+        for (const [field, label] of Object.entries(labels)) {
+          const proposed = changes[field];
+          if (proposed === undefined) continue;
+          const current = church?.[field] || '—';
+          addText(card, 'p', `${label}: ${current} → ${proposed || '— (remove value)'}`);
+        }
+        const actions = document.createElement('div'); actions.className = 'church-actions';
+        for (const [label, decision, style] of [['Approve changes', 'approved', 'approve'], ['Reject suggestion', 'rejected', 'reject']]) {
+          const button = document.createElement('button'); button.type = 'button'; button.className = style; button.textContent = label;
+          button.addEventListener('click', () => reviewSuggestion(suggestion.id, decision, church?.name || 'this church', button));
+          actions.append(button);
+        }
+        card.append(actions); list.append(card);
+      }
+    }
+
+    function openEditModal(church) {
+      const form = document.getElementById('edit-form');
+      form.dataset.churchId = church.id;
+      for (const field of ['name','pastor','country','state','city','zip','address','email','phone','fax','website','description']) {
+        form.elements[field].value = church[field] || '';
+      }
+      document.getElementById('edit-notice').className = 'notice';
+      document.getElementById('edit-overlay').classList.add('show');
+      document.getElementById('edit-name').focus();
+    }
+
+    function closeEditModal() { document.getElementById('edit-overlay').classList.remove('show'); }
+
+    function renderViews(rows) {
+      const container = document.getElementById('view-list');
+      container.replaceChildren();
+      const total = rows.reduce((sum, row) => sum + Number(row.views || 0), 0);
+      document.getElementById('view-count').textContent = total.toLocaleString();
+      if (!rows.length) { addText(container, 'div', 'No views recorded yet.', 'empty'); return; }
+      const table = document.createElement('table'); table.className = 'views';
+      const thead = document.createElement('thead'); const header = document.createElement('tr');
+      addText(header, 'th', 'Date'); addText(header, 'th', 'Views'); thead.append(header); table.append(thead);
+      const body = document.createElement('tbody');
+      for (const row of [...rows].reverse()) {
+        const tr = document.createElement('tr');
+        addText(tr, 'td', new Date(`${row.view_date}T00:00:00`).toLocaleDateString());
+        addText(tr, 'td', Number(row.views || 0).toLocaleString()); body.append(tr);
+      }
+      table.append(body); container.append(table);
+    }
+
+    function buildDailySeries(rows, count) {
+      const byDate = new Map(rows.map(row => [row.view_date, Number(row.views || 0)]));
+      const today = new Date();
+      const end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+      const days = [];
+      for (let offset = count - 1; offset >= 0; offset--) {
+        const day = new Date(end);
+        day.setUTCDate(end.getUTCDate() - offset);
+        const date = day.toISOString().slice(0, 10);
+        days.push({ date, views: byDate.get(date) || 0 });
+      }
+      return days;
+    }
+
+    function renderAnalytics(result) {
+      const svg = document.getElementById('views-chart');
+      const series = buildDailySeries(result.dailyViews, selectedAnalyticsDays * 2);
+      const previousDays = series.slice(0, selectedAnalyticsDays);
+      const days = series.slice(selectedAnalyticsDays);
+      const periodName = selectedAnalyticsDays === 365 ? 'last year' : `last ${selectedAnalyticsDays} days`;
+      document.getElementById('views-chart-caption').textContent = `Daily page views for the ${periodName}`;
+      document.getElementById('views-chart').setAttribute('aria-label', `Daily directory views for the ${periodName}`);
+      document.getElementById('view-count-label').textContent = `Directory views · ${periodName}`;
+      document.getElementById('views-period-label').textContent = `Views in the ${periodName}`;
+      document.getElementById('views-comparison-label').textContent = `Change vs. previous ${selectedAnalyticsDays === 365 ? 'year' : `${selectedAnalyticsDays} days`}`;
+      document.getElementById('views-insight').textContent = 'Loading directory activity…';
+
+      const width = 720, height = 230, left = 46, right = 704, top = 18, bottom = 180;
+      const max = Math.max(4, ...days.map(day => day.views));
+      const x = index => left + (right - left) * index / (days.length - 1);
+      const y = value => bottom - (bottom - top) * value / max;
+      const ns = 'http://www.w3.org/2000/svg';
+      const el = (tag, attrs = {}) => {
+        const node = document.createElementNS(ns, tag);
+        for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, String(value));
+        return node;
+      };
+      svg.replaceChildren();
+      const defs = el('defs');
+      const gradient = el('linearGradient', { id: 'viewsFill', x1: '0', x2: '0', y1: '0', y2: '1' });
+      gradient.append(el('stop', { offset: '0%', 'stop-color': '#41d9ef', 'stop-opacity': '.24' }));
+      gradient.append(el('stop', { offset: '100%', 'stop-color': '#41d9ef', 'stop-opacity': '.015' }));
+      defs.append(gradient); svg.append(defs);
+
+      const tickValues = [max, Math.round(max * 2 / 3), Math.round(max / 3), 0].filter((value, index, values) => values.indexOf(value) === index);
+      for (const value of tickValues) {
+        const lineY = y(value);
+        svg.append(el('line', { x1: left, y1: lineY, x2: right, y2: lineY, class: 'chart-gridline' }));
+        const label = el('text', { x: left - 10, y: lineY + 4, 'text-anchor': 'end', class: 'chart-label' });
+        label.textContent = value.toLocaleString(); svg.append(label);
+      }
+      const points = days.map((day, index) => [x(index), y(day.views)]);
+      const linePath = points.map(([px, py], index) => `${index ? 'L' : 'M'}${px},${py}`).join(' ');
+      svg.append(el('path', { d: `${linePath} L${right},${bottom} L${left},${bottom} Z`, class: 'chart-area' }));
+      svg.append(el('path', { d: linePath, class: 'chart-line' }));
+      const labelIndexes = [...new Set([0, .25, .5, .75, 1].map(fraction => Math.round((days.length - 1) * fraction)))];
+      for (const index of labelIndexes) {
+        const date = new Date(`${days[index].date}T00:00:00Z`);
+        const label = el('text', { x: x(index), y: 211, 'text-anchor': index === 0 ? 'start' : index === days.length - 1 ? 'end' : 'middle', class: 'chart-label' });
+        label.textContent = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(date);
+        svg.append(label);
+      }
+      for (const [index, point] of points.entries()) {
+        const circle = el('circle', { cx: point[0], cy: point[1], r: index === points.length - 1 ? 4 : 2.4, class: 'chart-dot', tabindex: '0', role: 'button', 'aria-label': `${days[index].date}: ${days[index].views.toLocaleString()} views`, 'data-point-index': index });
+        const title = el('title'); title.textContent = `${days[index].date}: ${days[index].views.toLocaleString()} views`;
+        circle.append(title);
+        const showPoint = () => {
+          svg.querySelectorAll('.chart-dot.selected').forEach(dot => dot.classList.remove('selected'));
+          circle.classList.add('selected');
+          const date = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${days[index].date}T00:00:00Z`));
+          const detail = document.getElementById('chart-point-detail');
+          const dateLabel = document.createElement('span'); dateLabel.textContent = date;
+          const countLabel = document.createElement('strong'); countLabel.textContent = `${days[index].views.toLocaleString()} ${days[index].views === 1 ? 'view' : 'views'}`;
+          detail.replaceChildren(dateLabel, countLabel);
+        };
+        circle.addEventListener('click', showPoint);
+        circle.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showPoint(); } });
+        svg.append(circle);
+      }
+
+      const total = days.reduce((sum, day) => sum + day.views, 0);
+      const previousTotal = previousDays.reduce((sum, day) => sum + day.views, 0);
+      const average = total / selectedAnalyticsDays;
+      const busiest = days.reduce((best, day) => day.views > best.views ? day : best, { date: '', views: 0 });
+      const change = previousTotal === 0 ? (total > 0 ? 'New activity' : 'No change') : `${total >= previousTotal ? '+' : ''}${Math.round((total - previousTotal) / previousTotal * 100)}%`;
+      document.getElementById('views-week').textContent = total.toLocaleString();
+      const changeElement = document.getElementById('views-change');
+      changeElement.textContent = change;
+      changeElement.dataset.trend = previousTotal === 0 ? (total > 0 ? 'up' : 'flat') : total > previousTotal ? 'up' : total < previousTotal ? 'down' : 'flat';
+      document.getElementById('views-average').textContent = average.toFixed(1);
+      document.getElementById('listing-count').textContent = Number(result.churches.length).toLocaleString();
+      document.getElementById('review-queue-count').textContent = (result.pending.length + result.suggestions.length).toLocaleString();
+      document.getElementById('country-count').textContent = new Set(result.churches.map(church => (church.country || '').trim()).filter(Boolean)).size.toLocaleString();
+      const note = total === 0 ? `No directory views have been recorded in the ${periodName} yet.` : `${busiest.views.toLocaleString()} views was the busiest day (${new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: selectedAnalyticsDays > 90 ? 'numeric' : undefined, timeZone: 'UTC' }).format(new Date(`${busiest.date}T00:00:00Z`))}). Your directory averaged ${average.toFixed(1)} views per day over the ${periodName}.`;
+      document.getElementById('views-insight').textContent = note;
+      renderViews(result.dailyViews.filter(row => row.view_date >= days[0].date));
+    }
+
+    async function loadDashboard(days = selectedAnalyticsDays) {
+      const result = await api('admin-dashboard', 'GET', undefined, { days });
+      document.getElementById('pending-count').textContent = String(result.pending.length);
+      document.getElementById('approved-count').textContent = Number(result.approvedCount).toLocaleString();
+      renderChurches(result.pending);
+      renderSuggestions(result.suggestions, result.churches);
+      renderAllChurches(result.churches);
+      renderAnalytics(result);
+      return result;
+    }
+
+    async function reviewChurch(id, status, name, button) {
+      const choice = status === 'approved' ? 'approve' : 'reject';
+      if (!confirm(`Are you sure you want to ${choice} “${name}”?`)) return;
+      button.disabled = true;
+      try { await api('review', 'POST', { id, status }); await loadDashboard(); }
+      catch (error) { showNotice(document.getElementById('dashboard-notice'), error.message); button.disabled = false; }
+    }
+
+    async function reviewSuggestion(id, decision, name, button) {
+      const action = decision === 'approved' ? 'approve the suggested changes for' : 'reject the suggested changes for';
+      if (!confirm(`Are you sure you want to ${action} “${name}”?`)) return;
+      button.disabled = true;
+      try { await api('review-suggestion', 'POST', { id, decision }); await loadDashboard(); }
+      catch (error) { showNotice(document.getElementById('dashboard-notice'), error.message); button.disabled = false; }
+    }
+
+    async function deleteChurch(id, name, button) {
+      if (!confirm(`Permanently delete “${name}”? This cannot be undone.`)) return;
+      button.disabled = true;
+      try { await api('delete', 'POST', { id }); await loadDashboard(); }
+      catch (error) { showNotice(document.getElementById('dashboard-notice'), error.message); button.disabled = false; }
+    }
+
+    document.getElementById('edit-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const button = document.getElementById('save-edit');
+      const payload = { id: form.dataset.churchId };
+      for (const field of ['name','pastor','country','state','city','zip','address','email','phone','fax','website','description']) {
+        payload[field] = form.elements[field].value.trim();
+      }
+      button.disabled = true; button.textContent = 'Saving…';
+      try {
+        await api('update', 'POST', payload);
+        closeEditModal(); await loadDashboard();
+        showNotice(document.getElementById('dashboard-notice'), 'Church details updated successfully.', 'info');
+      } catch (error) { showNotice(document.getElementById('edit-notice'), error.message); }
+      finally { button.disabled = false; button.textContent = 'Save Changes'; }
+    });
+
+    document.getElementById('views-range').addEventListener('change', async (event) => {
+      const select = event.currentTarget;
+      const previousDays = selectedAnalyticsDays;
+      selectedAnalyticsDays = Number(select.value);
+      select.disabled = true;
+      try {
+        await loadDashboard();
+        document.getElementById('dashboard-notice').className = 'notice';
+      } catch (error) {
+        selectedAnalyticsDays = previousDays;
+        select.value = String(previousDays);
+        showNotice(document.getElementById('dashboard-notice'), error.message);
+      } finally { select.disabled = false; }
+    });
+
+    document.getElementById('cancel-edit').addEventListener('click', closeEditModal);
+
+    document.getElementById('login-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = document.getElementById('login-button');
+      const notice = document.getElementById('login-notice');
+      button.disabled = true; button.textContent = 'Signing in…'; notice.className = 'notice';
+      try {
+        const response = await fetch(`${DIRECTORY_API}?action=admin-login`, {
+          method: 'POST',
+          headers: { apikey: PUBLISHABLE_KEY, Authorization: `Bearer ${PUBLISHABLE_KEY}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: document.getElementById('admin-username').value.trim().toLowerCase().replace(/\s+/g, '.').replace(/^([a-z])\./, '$1'), password: document.getElementById('admin-password').value })
+        });
+        const auth = await response.json().catch(() => ({}));
+        if (!response.ok || !auth.access_token) throw new Error(auth.error || 'The username or password is incorrect.');
+        accessToken = auth.access_token;
+        sessionStorage.setItem('etm-admin-access-token', accessToken);
+        const dashboardData = await loadDashboard();
+        document.getElementById('login-panel').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        document.body.classList.add('admin-active');
+        showWelcomeToast();
+        const params = new URLSearchParams(window.location.search);
+        const editId = params.get('edit');
+        if (editId) {
+          const church = dashboardData.churches.find(item => String(item.id) === editId);
+          if (church) openEditModal(church);
+          else showNotice(document.getElementById('dashboard-notice'), 'That church listing could not be found.');
+          window.history.replaceState({}, '', window.location.pathname);
+        }
+      } catch (error) {
+        accessToken = '';
+        sessionStorage.removeItem('etm-admin-access-token');
+        showNotice(notice, error.message === 'Admin access is required.' ? 'This account is not authorized as an administrator.' : error.message);
+      } finally { button.disabled = false; button.textContent = 'Sign In'; }
+    });
+
+    function blinkRefreshButton() {
+      const button = document.getElementById('refresh-button');
+      if (!button) return;
+      button.classList.remove('refresh-success');
+      void button.offsetWidth;
+      button.classList.add('refresh-success');
+      window.setTimeout(() => button.classList.remove('refresh-success'), 1500);
+    }
+
+    document.getElementById('refresh-button').addEventListener('click', async () => {
+      const button = document.getElementById('refresh-button');
+      button.disabled = true;
+      button.textContent = 'Refreshing…';
+      try {
+        await loadDashboard();
+        showNotice(document.getElementById('dashboard-notice'), 'Dashboard refreshed.', 'info');
+        blinkRefreshButton();
+      } catch (error) {
+        showNotice(document.getElementById('dashboard-notice'), error.message);
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Refresh';
+      }
+    });
+
+    document.getElementById('signout-button').addEventListener('click', () => {
+      accessToken = '';
+      sessionStorage.removeItem('etm-admin-access-token');
+      window.location.replace(`${window.location.pathname}?login=1`);
+    });
+
+    async function restoreAdminSession() {
+      const savedToken = sessionStorage.getItem('etm-admin-access-token');
+      if (!savedToken) return;
+      accessToken = savedToken;
+      try {
+        await loadDashboard();
+        document.getElementById('login-panel').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        document.body.classList.add('admin-active');
+      } catch {
+        accessToken = '';
+        sessionStorage.removeItem('etm-admin-access-token');
+      }
+    }
+    const adminPageParams = new URLSearchParams(window.location.search);
+    if (handlePasswordRecovery()) {
+      // Recovery link displays the password update form instead of restoring a dashboard session.
+    } else if (adminPageParams.get('login') === '1') {
+      accessToken = '';
+      sessionStorage.removeItem('etm-admin-access-token');
+      window.history.replaceState({}, '', window.location.pathname);
+    } else {
+      restoreAdminSession();
+    }
+  </script>
+</body>
+</html>

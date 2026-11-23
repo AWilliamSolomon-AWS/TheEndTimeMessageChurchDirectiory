@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>The End Time Message Church Directory</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* =============================================
+       PREMIUM DESIGN SYSTEM
+       Charcoal + Ivory + Antique Gold
+       ============================================= */
+    :root {
+      /* ── Core Palette ── */
+      --charcoal: #171614;
+      --ivory: #F7F4EC;
+      --soft-white: #FFFDF8;
+      --gold: #B8944A;
+      --gold-light: #D6BD82;
+      --warm-gray: #777267;
+      --warm-border: #DDD7C8;
+      --gold-dim: rgba(184, 148, 74, 0.22);
+      --charcoal-light: #2A2824;
+
+      /* ── Semantic aliases (keep JS working) ── */
+      --ivory-light: #FFFDF8;
+      --ivory-dark: #DDD7C8;
+      --near-black: #171614;
+      --deep-red: #171614;
+      --deep-maroon: #171614;
+      --text-primary: #1E1C18;
+      --text-secondary: #777267;
+      --border: #DDD7C8;
+      --amber-gold: #B8944A;
+      --amber-hover: #9A7A38;
+      --amber-light: #D6BD82;
+      --royal-blue: #171614;
+      --dark-royal-blue: #171614;
+      --midnight-maroon: #171614;
+      --deep-navy: #171614;
+      --midnight-navy: #171614;
+      --secondary-navy: #171614;
+      --secondary-maroon: #171614;
+      --antique-gold: #B8944A;
+      --light-gold: #D6BD82;
+      --warm-ivory: #F7F4EC;
+      --white: #FFFFFF;
+      --red-hover: #2A2824;
+      --red-glow: rgba(184, 148, 74, 0.18);
+      --shadow-sm: 0 4px 24px rgba(23, 22, 20, 0.08);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #1E1C18;
+      background: #F7F4EC;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ── Top utility bar ── */
+    .top {
+      background: #450000;
+      color: #F7F4EC;
+      font-size: 12px;
+      padding: 6px 6%;
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid rgba(214, 189, 130, 0.22);
+    }
+
+    .top span:last-child {
+      color: #D6BD82;
+      font-weight: 500;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #450000;
+      color: #F7F4EC;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #512b39;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #B8944A;
+      opacity: 0.30;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand b {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #F7F4EC;
+      line-height: 1.2;
+      display: block;
+    }
+
+    .brand small {
+      display: block;
+      color: #D6BD82;
+      font-size: 7.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      font-size: 13px;
+      align-items: center;
+      height: 100%;
+    }
+
+    nav a {
+      color: #E2CFCC;
+      transition: color .2s;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      padding-top: 2px;
+    }
+
+    nav a:hover {
+      color: #FFF8F1;
+    }
+
+    nav a.active {
+      color: #F2C56B;
+      border-bottom-color: #F2C56B;
+    }
+
+    /* ── Buttons ── */
+    .cta-btn {
+      background: #B8944A;
+      color: #171614;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background .22s, transform .22s, box-shadow .22s;
+      letter-spacing: 0.2px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-btn:hover {
+      background: #D6BD82;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(184, 148, 74, 0.28);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: radial-gradient(ellipse 90% 70% at 50% -10%, rgba(214, 189, 130, 0.22) 0%, rgba(251, 249, 244, 0.96) 55%, #EDE7D8 100%);
+      color: #171614;
+      text-align: center;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 5% 58px;
+      position: relative;
+      border-bottom: 1px solid rgba(184, 148, 74, 0.22);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: clamp(320px, 38vw, 600px);
+      opacity: 0.40;
+      background-repeat: no-repeat;
+      background-size: cover;
+      filter: none;
+      transform: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::before {
+      left: 0;
+      background-image: url('assets/hero-jesus.jpg');
+      background-position: left center;
+      -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.58) 0%, rgba(0,0,0,.6) 35%, rgba(0,0,0,.36) 64%, rgba(0,0,0,.1) 84%, transparent 100%);
+      mask-image: linear-gradient(90deg, rgba(0,0,0,.58) 0%, rgba(0,0,0,.6) 35%, rgba(0,0,0,.36) 64%, rgba(0,0,0,.1) 84%, transparent 100%);
+    }
+
+    .hero::after {
+      right: 0;
+      background-image: url('assets/hero-message-preacher.jpg');
+      background-position: right center;
+      -webkit-mask-image: linear-gradient(270deg, rgba(0,0,0,.58) 0%, rgba(0,0,0,.6) 35%, rgba(0,0,0,.36) 64%, rgba(0,0,0,.1) 84%, transparent 100%);
+      mask-image: linear-gradient(270deg, rgba(0,0,0,.58) 0%, rgba(0,0,0,.6) 35%, rgba(0,0,0,.36) 64%, rgba(0,0,0,.1) 84%, transparent 100%);
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #A07C2E;
+      margin: 0 0 12px;
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-weight: 600;
+      margin: 0 0 12px;
+      color: #171614;
+      line-height: 1.18;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #171614;
+    }
+
+    .hero p {
+      max-width: 580px;
+      margin: 0 auto 28px;
+      font-size: 15.5px;
+      color: #635D52;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* ── Search Box ── */
+    .searchbox {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #FFFDF8;
+      padding: 10px 12px;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr auto;
+      gap: 10px;
+      box-shadow: 0 10px 32px rgba(23, 22, 20, 0.08), 0 2px 6px rgba(23, 22, 20, 0.03);
+      border: 1px solid #DDD7C8;
+    }
+
+    .searchbox input,
+    .searchbox select {
+      border: 1px solid #DDD7C8;
+      border-radius: 7px;
+      padding: 11px 14px;
+      font: inherit;
+      font-size: 14px;
+      color: #171614;
+      background: #FFFDF8;
+      transition: border-color .2s, box-shadow .2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .searchbox input::placeholder {
+      color: #A09880;
+    }
+
+    .searchbox input:focus,
+    .searchbox select:focus {
+      outline: none;
+      border-color: #B8944A;
+      box-shadow: 0 0 0 3px rgba(184, 148, 74, 0.14);
+    }
+
+    .searchbox .btn {
+      background: #171614;
+      color: #F7F4EC;
+      border: none;
+      border-radius: 7px;
+      padding: 11px 22px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .22s, transform .22s;
+      letter-spacing: 0.3px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .searchbox .btn:hover {
+      background: #B8944A;
+      color: #171614;
+      transform: translateY(-1px);
+      box-shadow: 0 7px 16px rgba(23,22,20,.2);
+    }
+
+    .searchbox .btn:active {
+      transform: translateY(0) scale(.98);
+      box-shadow: none;
+    }
+
+    .searchbox .btn:focus-visible {
+      outline: 3px solid #D6BD82;
+      outline-offset: 3px;
+    }
+
+    /* ── Message Churches section ── */
+    .section {
+      padding: 56px 6% 16px;
+      max-width: 1280px;
+      margin: auto;
+    }
+
+    .sectionhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 0;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #DDD7C8;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #B8944A;
+      font-family: 'Inter', sans-serif;
+      margin: 0 0 8px;
+      display: block;
+    }
+
+    .section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      color: #171614;
+      font-size: 38px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.4px;
+      line-height: 1.12;
+    }
+
+    .sectionhead p {
+      color: #777267;
+      font-size: 13.5px;
+      margin: 7px 0 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .add {
+      border: 1px solid #B8944A;
+      background: transparent;
+      color: #171614;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .22s;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .add:hover {
+      background: #B8944A;
+      color: #171614;
+      box-shadow: 0 3px 14px rgba(184, 148, 74, 0.26);
+    }
+
+    /* ── Directory cards section ── */
+    .directory {
+      background: #F0EDE4;
+      padding: 32px 6% 64px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      max-width: 1280px;
+      margin: auto;
+    }
+
+    /* ── Church Cards ── */
+    .card {
+      background: #FFFDF8;
+      border: 1px solid #DDD7C8;
+      border-radius: 12px;
+      padding: 26px 28px;
+      box-shadow: 0 2px 12px rgba(23, 22, 20, 0.05);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #B8944A;
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #D6BD82;
+      box-shadow: 0 8px 30px rgba(23, 22, 20, 0.09);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .country {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #B8944A;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      color: #171614;
+      font-size: 22px;
+      font-weight: 600;
+      margin: 10px 0 10px;
+      line-height: 1.25;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777267;
+      line-height: 1.65;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card .line {
+      border: none;
+      border-top: 1px solid #EAE7DF;
+      margin: 16px 0;
+    }
+
+    .card a.more {
+      color: #171614;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .2s;
+      letter-spacing: 0.1px;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card a.more::after {
+      content: '→';
+      transition: transform .22s;
+      display: inline-block;
+    }
+
+    .card:hover a.more::after {
+      transform: translateX(4px);
+    }
+
+    .card a.more:hover {
+      color: #B8944A;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #450000;
+      color: #F7F4EC;
+      padding: 40px 6% 28px;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid rgba(184, 148, 74, 0.20);
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #B8944A;
+      opacity: 0.28;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .footer-contact { width:100%; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:24px 26px; margin-bottom:22px; text-align:left; background:#FFFDF8; border:1px solid #D7C7A6; border-radius:14px; box-shadow:0 16px 38px rgba(25,0,5,.18); }
+    .footer-contact-copy { max-width:500px; }
+    .footer-contact-label { color:#8A6425; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; }
+    .footer-contact h2 { margin:5px 0 6px; color:#32151E; font:600 27px 'Cormorant Garamond',Georgia,serif; }
+    .footer-contact p { margin:0; color:#65595A; font:12px/1.65 'Inter',Arial,sans-serif; }
+    .footer-contact-email { color:#7B1828; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; overflow-wrap:anywhere; }
+    .footer-contact-email:hover { color:#A02C38; }
+    .footer-contact-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:9px; }
+    .footer-contact-actions a { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:0 14px; border-radius:6px; font:600 12px 'Inter',Arial,sans-serif; text-decoration:none; white-space:nowrap; transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s; }
+    .footer-contact-primary { background:#171614; color:#FFFDF8; border:1px solid #171614; }
+    .footer-contact-primary:hover { background:#B8944A; border-color:#B8944A; color:#171614; transform:translateY(-1px); box-shadow:0 7px 16px rgba(23,22,20,.2); }
+    .footer-contact-primary:active { transform:translateY(0) scale(.98); box-shadow:none; }
+    .footer-contact-primary:focus-visible { outline:3px solid #D6BD82; outline-offset:3px; }
+    .footer-contact-secondary { color:#E8D9B7; border:1px solid rgba(214,189,130,.36); }
+    .footer-contact-secondary:hover { background:rgba(214,189,130,.1); border-color:#D6BD82; }
+
+    .footer-copy {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      font-family: 'Cormorant Garamond', serif;
+      color: #FFF8F1;
+      text-shadow: 0 1px 10px rgba(255, 232, 210, 0.12);
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: #E0CDD0;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+    }
+
+    .footer-credit {
+      font-size: 12px;
+      color: #E5D5D1;
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .footer-credit strong {
+      color: #F0D18A;
+      font-weight: 500;
+    }
+
+    .footer-credit a {
+      color: #F2C56B;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(242, 197, 107, 0.52);
+      padding-bottom: 1px;
+      display:inline-block;
+      border-radius:3px;
+      transition: color .2s, border-color .2s, background .2s, transform .2s, box-shadow .2s;
+    }
+
+    .footer-credit a:hover {
+      color: #171614;
+      background:#B8944A;
+      border-color: #B8944A;
+      transform:translateY(-1px);
+      box-shadow:0 5px 12px rgba(23,22,20,.2);
+    }
+    .footer-credit a:active { transform:translateY(0) scale(.98); box-shadow:none; }
+    .footer-credit a:focus:not(:focus-visible) { color:#F2C56B; background:transparent; border-color:rgba(242,197,107,.52); transform:none; box-shadow:none; }
+    .footer-credit a:focus-visible { outline:3px solid #D6BD82; outline-offset:3px; }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: rgba(226, 207, 204, 0.72);
+      margin-top: 10px;
+      letter-spacing: 0.3px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .footer-legal-links a {
+      color: #E2CFCC;
+      transition: color .2s;
+    }
+
+    .footer-legal-links a:hover {
+      color: #FFE2A3;
+    }
+
+    /* ── Modals ── */
+    .visually-hidden { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 22, 20, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1000;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modalbox {
+      background: #FFFDF8;
+      width: min(560px, 100%);
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid #DDD7C8;
+      box-shadow: 0 20px 60px rgba(23, 22, 20, 0.22);
+    }
+
+    .modalbox h2 {
+      font-family: 'Cormorant Garamond', serif;
+      color: #171614;
+      margin-top: 0;
+      font-size: 26px;
+      letter-spacing: -0.2px;
+    }
+
+    .contact-modalbox { width:min(540px,100%); }
+    .contact-intro { margin:-8px 0 18px; color:#716B5E; font:13px/1.6 'Inter',Arial,sans-serif; }
+    .contact-options { display:grid; gap:10px; }
+    .contact-options a { display:grid; gap:5px; padding:16px; border:1px solid #DDD7C8; border-radius:8px; text-decoration:none; color:#171614; background:#F7F4EC; transition:border-color .2s,background .2s; }
+    .contact-options a:hover { border-color:#B8944A; background:#FBF8EF; }
+    .contact-options strong { font:600 14px 'Inter',Arial,sans-serif; }
+    .contact-options span { color:#716B5E; font:12px/1.55 'Inter',Arial,sans-serif; }
+
+    .formgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .formgrid input,
+    .formgrid select,
+    .formgrid textarea {
+      width: 100%;
+      border: 1px solid #DDD7C8;
+      border-radius: 6px;
+      padding: 10px 12px;
+      font: inherit;
+      background: #F7F4EC;
+      color: #171614;
+      transition: border-color .2s, box-shadow .2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .formgrid input:focus,
+    .formgrid select:focus,
+    .formgrid textarea:focus {
+      outline: none;
+      border-color: #B8944A;
+      box-shadow: 0 0 0 3px rgba(184, 148, 74, 0.14);
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .modalactions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .modalactions .add {
+      background: #2A2824;
+      color: #F7F4EC;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background .2s;
+    }
+
+    .modalactions .add:hover {
+      background: #171614;
+    }
+
+    /* ── Directory Card Header ── */
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    /* ── Church Details Modal ── */
+    #details-modal .modalbox {
+      width: min(640px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .details-header {
+      border-bottom: 1px solid #DDD7C8;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .details-header .country-badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #B8944A;
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .details-header h2 {
+      margin: 0 0 4px;
+      font-size: 26px;
+      color: #171614;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .inline-tagline {
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 500;
+      color: #777267;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+
+    .details-pastor {
+      font-size: 13px;
+      font-weight: 600;
+      color: #171614;
+    }
+
+    .details-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .details-fields .field {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .details-fields .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .details-fields .field label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      color: #B8944A;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .details-fields .field span {
+      font-size: 14px;
+      color: #171614;
+      font-weight: 500;
+    }
+
+    .details-fields .field span.empty {
+      color: #C8C4B8;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .details-divider {
+      border: none;
+      border-top: 1px solid #DDD7C8;
+      margin: 20px 0;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .footer-contact { align-items:flex-start; gap:16px; }
+      .footer-contact-actions { justify-content:flex-start; }
+      nav {
+        display: none;
+      }
+
+      .searchbox {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .sectionhead {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .footer-note {
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .footer-contact { padding:20px; flex-direction:column; }
+      .footer-contact-actions { width:100%; }
+      .footer-contact-actions a { flex:1; }
+      .top {
+        display: none;
+      }
+
+      .searchbox,
+      .grid,
+      .formgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .sectionhead {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 30px 4% 34px;
+      }
+
+      .hero h1 {
+        font-size: 26px;
+      }
+
+      .hero p {
+        font-size: 13px;
+      }
+
+      header {
+        height: 56px;
+        padding: 0 5%;
+      }
+
+      .brand b {
+        font-size: 16px;
+      }
+
+      .brand small {
+        font-size: 7.5px;
+        letter-spacing: 1.2px;
+      }
+
+      .section {
+        padding: 36px 5% 12px;
+      }
+
+      .directory {
+        padding: 24px 5% 44px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .details-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .details-fields .field.full {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 26px;
+      }
+
+      .section h2 {
+        font-size: 28px;
+      }
+    }
+    /* Shared interaction feedback for site buttons */
+    button:not(:disabled), .button, .cta-btn, .footer-contact-actions a {
+      transition:background-color .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;
+    }
+    button:not(:disabled):hover, .button:hover, .cta-btn:hover, .footer-contact-actions a:hover {
+      transform:translateY(-1px);
+      box-shadow:0 7px 16px rgba(23,22,20,.18);
+    }
+    button:not(:disabled):active, .button:active, .cta-btn:active, .footer-contact-actions a:active {
+      transform:translateY(0) scale(.98);
+      box-shadow:none;
+    }
+    button:focus-visible, .button:focus-visible, .cta-btn:focus-visible, .footer-contact-actions a:focus-visible {
+      outline:3px solid #D6BD82;
+      outline-offset:3px;
+    }
+    @media(prefers-reduced-motion:reduce) {
+      button, .button, .cta-btn, .footer-contact-actions a { transition:none!important; }
+      button:hover, .button:hover, .cta-btn:hover, .footer-contact-actions a:hover,
+      button:active, .button:active, .cta-btn:active, .footer-contact-actions a:active { transform:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="#">
+      <span>
+        <b>The End Time Message Church Directory</b>
+        <small>Connecting End Time Message Churches Worldwide</small>
+      </span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#">Home</a>
+      <a href="#directory">Churches</a>
+      <a href="about.html">About</a>
+      <a href="#contact" onclick="event.preventDefault(); openContact()">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-eyebrow">THE END TIME MESSAGE CHURCH DIRECTORY</div>
+    <h1>Looking for an End-Time Message church?</h1>
+    <p>Connect with a local End-Time Message assembly wherever you are.</p>
+    <div class="searchbox">
+      <input id="q" placeholder="Search church, pastor or city" oninput="filterCards()" aria-label="Search query">
+      <select id="country" onchange="filterCards()" aria-label="Country filter">
+        <option value="">All Countries</option>
+      </select>
+      <select id="city" onchange="filterCards()" aria-label="City filter">
+        <option value="">All Cities</option>
+      </select>
+      <button class="btn" onclick="filterCards()">Search</button>
+    </div>
+  </section>
+
+  <section class="section" id="directory">
+    <div class="sectionhead">
+      <div>
+        <h2>End Time Message Churches</h2>
+        <p>Browse churches listed in the global directory.</p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <button class="add" onclick="openModal()">+ Add Your Church</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="directory" id="directory-list">
+    <div class="grid" id="cards">
+      <!-- Dynamic church cards rendered via JavaScript -->
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <section class="footer-contact" aria-label="Contact and support">
+        <div class="footer-contact-copy"><span class="footer-contact-label">Contact &amp; support</span><h2>How can we help?</h2><p>For technical issues or any other problems, email us at <a class="footer-contact-email" href="https://mail.google.com/mail/?view=cm&fs=1&to=thebornagainchristian1%40gmail.com&su=Website%20Support%20Request&body=Hello%2C%0A%0AI%20am%20experiencing%20a%20problem%20with%20the%20church%20directory.%0A%0ADetails%3A%20">thebornagainchristian1@gmail.com</a>.</p></div>
+        <div class="footer-contact-actions"><a class="footer-contact-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=thebornagainchristian1%40gmail.com&su=Website%20Support%20Request&body=Hello%2C%0A%0AI%20am%20experiencing%20a%20problem%20with%20the%20church%20directory.%0A%0ADetails%3A%20" target="_blank" rel="noopener">Email us</a></div>
+      </section>
+      <div class="footer-copy">© 2026 The End Time Message Church Directory</div>
+      <div class="footer-note">Church listings are published only after review and verification by the directory administrator.</div>
+      <div class="footer-credit"><strong>Developed and Maintained by</strong> <a
+          href="https://awilliamsolomon.vercel.app/" target="_blank" rel="noopener noreferrer">A. William Solomon</a>
+      </div>
+      <div class="footer-legal-links">
+        <a href="about.html">About</a>
+        <span>·</span>
+        <a href="#" onclick="showLegal('terms'); return false;">Terms</a>
+        <span>·</span>
+        <a href="#" onclick="showLegal('privacy'); return false;">Privacy</a>
+        <span>·</span>
+        <a href="#" onclick="showLegal('copyright'); return false;">Copyright</a>
+        <span>·</span>
+        <a href="admin-login.html?login=1">Admin Login</a>
+        <span>·</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="modalbox contact-modalbox">
+      <span class="footer-contact-label">Contact &amp; support</span>
+      <h2 id="contact-modal-title">How can we help?</h2>
+      <p class="contact-intro">For technical issues or any other problems, email us.</p>
+      <div class="contact-options">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=thebornagainchristian1%40gmail.com&su=Website%20Support%20Request&body=Hello%2C%0A%0AI%20am%20experiencing%20a%20problem%20with%20the%20church%20directory.%0A%0ADetails%3A%20"><strong>Email us</strong><span>For technical issues or any other problems, email thebornagainchristian1@gmail.com.</span></a>
+      </div>
+      <div class="modalactions"><button class="add" type="button" onclick="closeContact()">Close</button></div>
+    </div>
+  </div>
+
+  <!-- Modal for Add Church -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modalbox">
+      <h2 id="modal-title">Add to Church Directory</h2>
+      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;">Submit your church details for review by
+        our directory
+        team.</p>
+      <form id="add-church-form" onsubmit="handleChurchSubmit(event)">
+        <div class="visually-hidden" aria-hidden="true"><label for="company-website">Leave this field empty</label><input id="company-website" name="company_website" tabindex="-1" autocomplete="off"></div>
+        <div class="formgrid">
+          <input id="add-name" placeholder="Church / Ministry Name *" required class="full" aria-label="Church Name">
+          <input id="add-country" placeholder="Country *" required aria-label="Country">
+          <input id="add-state" placeholder="State / Province / Region" aria-label="State / Province">
+          <input id="add-city" placeholder="City *" required aria-label="City">
+          <input id="add-address" placeholder="Street Address" class="full" aria-label="Street Address">
+          <input id="add-zip" placeholder="Postal / ZIP code" aria-label="Postal or ZIP code">
+          <input id="add-pastor" placeholder="Pastor / Contact Person" aria-label="Pastor / Contact Person">
+          <input id="add-phone" placeholder="Phone" aria-label="Phone">
+          <input id="add-fax" placeholder="Fax" aria-label="Fax">
+          <input id="add-email" placeholder="Email" type="email" aria-label="Email">
+          <input id="add-website" placeholder="Website (e.g. www.example.org)" class="full" aria-label="Website">
+          <textarea id="add-desc" placeholder="Short description of the church / ministry" class="full"
+            style="min-height:80px;padding:12px;border:1px solid var(--border);border-radius:6px;font:inherit"></textarea>
+        </div>
+        <div class="modalactions">
+          <button type="button" class="add" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="cta-btn">Submit for Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Church Details Modal -->
+  <div class="modal" id="details-modal" role="dialog" aria-modal="true" aria-labelledby="details-title">
+    <div class="modalbox">
+      <!-- View Mode -->
+      <div id="d-view-mode">
+        <div class="details-header">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <div class="country-badge" id="d-country"></div>
+          </div>
+          <h2 id="details-title"><span id="d-church-name-display"></span> <span class="inline-tagline"
+              id="d-tagline"></span></h2>
+          <div class="details-pastor" id="d-header-pastor"></div>
+        </div>
+
+        <div class="details-fields">
+          <div class="field">
+            <label>Church / Ministry Name</label>
+            <span id="d-name"></span>
+          </div>
+          <div class="field">
+            <label>Name of the Pastor</label>
+            <span id="d-pastor"></span>
+          </div>
+          <div class="field">
+            <label>Country</label>
+            <span id="d-country-val"></span>
+          </div>
+          <div class="field">
+            <label>City</label>
+            <span id="d-city"></span>
+          </div>
+          <div class="field full">
+            <label>Address</label>
+            <span id="d-address"></span>
+          </div>
+          <div class="field">
+            <label>State / Province / Region</label>
+            <span id="d-state"></span>
+          </div>
+          <div class="field">
+            <label>Zip / Postal / Region Code</label>
+            <span id="d-zip"></span>
+          </div>
+        </div>
+
+        <hr class="details-divider">
+
+        <div class="details-fields">
+          <div class="field">
+            <label>Email</label>
+            <span id="d-email"></span>
+          </div>
+          <div class="field">
+            <label>Phone</label>
+            <span id="d-phone"></span>
+          </div>
+          <div class="field">
+            <label>Fax</label>
+            <span id="d-fax"></span>
+          </div>
+          <div class="field">
+            <label>Website</label>
+            <span id="d-website"></span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modalactions" style="margin-top:24px; display:flex; justify-content:space-between;">
+        <button class="add" id="btn-suggest-edit-details" onclick="openEditSuggestion()">Suggest an Edit</button>
+        <button class="add" id="btn-close-details" onclick="closeDetails()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Public edit suggestion form: changes require administrator approval. -->
+  <div class="modal" id="edit-suggestion-modal" role="dialog" aria-modal="true" aria-labelledby="edit-suggestion-title">
+    <div class="modalbox">
+      <h2 id="edit-suggestion-title">Suggest Church Details</h2>
+      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;">Suggested changes are reviewed before they appear in the directory.</p>
+      <form id="edit-suggestion-form">
+        <div class="visually-hidden" aria-hidden="true"><label for="suggest-company-website">Leave this field empty</label><input id="suggest-company-website" name="company_website" tabindex="-1" autocomplete="off"></div>
+        <div class="formgrid">
+          <div><label for="suggest-name">Church / Ministry Name *</label><input id="suggest-name" name="name" required maxlength="160"></div>
+          <div><label for="suggest-pastor">Pastor</label><input id="suggest-pastor" name="pastor" maxlength="160"></div>
+          <div><label for="suggest-country">Country *</label><input id="suggest-country" name="country" required maxlength="100"></div>
+          <div><label for="suggest-state">State / Province / Region</label><input id="suggest-state" name="state" maxlength="100"></div>
+          <div><label for="suggest-city">City *</label><input id="suggest-city" name="city" required maxlength="100"></div>
+          <div><label for="suggest-zip">ZIP / Postal Code</label><input id="suggest-zip" name="zip" maxlength="40"></div>
+          <div class="full"><label for="suggest-address">Address</label><input id="suggest-address" name="address" maxlength="300"></div>
+          <div><label for="suggest-email">Email</label><input id="suggest-email" name="email" type="email" maxlength="254"></div>
+          <div><label for="suggest-phone">Phone</label><input id="suggest-phone" name="phone" maxlength="50"></div>
+          <div><label for="suggest-fax">Fax</label><input id="suggest-fax" name="fax" maxlength="50"></div>
+          <div><label for="suggest-website">Website</label><input id="suggest-website" name="website" maxlength="300"></div>
+          <div class="full"><label for="suggest-description">Description</label><textarea id="suggest-description" name="description" maxlength="1200"></textarea></div>
+        </div>
+        <div id="edit-suggestion-error" class="notice" style="display:none;color:#9B2C2C;font-size:13px;margin-top:12px;"></div>
+        <div class="modalactions" style="margin-top:20px;">
+          <button type="button" class="add" onclick="closeEditSuggestion()">Cancel</button>
+          <button type="submit" class="cta-btn">Send for Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Legal/Information Modal -->
+  <div class="modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="modalbox" style="max-width: 580px;">
+      <h2 id="legal-modal-title" style="margin-top:0; font-family:'Cormorant Garamond',serif; color:var(--deep-navy);">
+      </h2>
+      <div id="legal-modal-body" style="font-size:14px; line-height:1.7; color:var(--text-primary); margin:16px 0;">
+      </div>
+      <div class="modalactions" style="margin-top:20px">
+        <button class="add" onclick="closeLegal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const legalTexts = {
+      legal: {
+        title: "Legal Notice",
+        body: "<p style='margin-bottom:12px;'><strong>Message Church Directory</strong> is an independent international directory service designed to help believers locate and connect with End-Time Message assemblies worldwide.</p><p>Directory listings are gathered from public minister directories or submitted voluntarily by authorized local church leadership. The directory does not claim ecclesiastical or administrative authority over any listed assembly.</p>"
+      },
+      terms: {
+        title: "Terms of Service",
+        body: "<p style='margin-bottom:12px;'>By utilizing The End Time Message Church Directory platform, you agree to the following terms:</p><ul style='padding-left:20px; line-height:1.8;'><li>Directory content is strictly provided for fellowship, personal contact, and informational purposes.</li><li>Assembly details submitted for inclusion must be authentic and verified with local leadership permission.</li><li>Automated scraping, harvesting of contacts, or commercial misuse of published details is strictly prohibited.</li></ul>"
+      },
+      privacy: {
+        title: "Privacy Policy",
+        body: "<p style='margin-bottom:12px;'>We respect the privacy of all local assemblies, pastors, and church contact persons:</p><ul style='padding-left:20px; line-height:1.8;'><li>Only official public contact details (church address, contact phone, email, and website) are displayed.</li><li>We do not track visitors or sell personal contact information to third parties.</li><li>Assembly leaders may request updates or removal of their listing at any time.</li></ul>"
+      },
+      copyright: {
+        title: "Copyright Information",
+        body: "<p style='margin-bottom:12px;'><strong>© 2026 Message Church Directory. All rights reserved.</strong></p><p style='margin-bottom:12px;'>The visual interface design, directory architecture, branding aesthetics, and code system are protected under intellectual property standards.</p><p>Developed and maintained by <a href='https://awilliamsolomon.vercel.app/' target='_blank' rel='noopener noreferrer' style='color:#7B1828;font-weight:600;text-decoration:underline;text-underline-offset:2px;'>A. William Solomon</a>.</p>"
+      }
+    };
+
+    function showLegal(type) {
+      const item = legalTexts[type];
+      if (!item) return;
+      document.getElementById('legal-modal-title').textContent = item.title;
+      document.getElementById('legal-modal-body').innerHTML = item.body;
+      document.getElementById('legal-modal').classList.add('show');
+    }
+    function closeLegal() {
+      document.getElementById('legal-modal').classList.remove('show');
+    }
+
+    const DIRECTORY_API = 'https://rxztnnttbxswxyhiceip.supabase.co/functions/v1/church-directory';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_PCZB9w9d2R3FsshK4PtdaA_0euJlZ1_';
+    let churches = [];
+    let currentDetailsData = null;
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+
+    async function directoryRequest(action, method = 'GET', payload) {
+      const response = await fetch(`${DIRECTORY_API}?action=${action}`, {
+        method,
+        headers: { 'apikey': SUPABASE_PUBLISHABLE_KEY, 'Authorization': `Bearer ${SUPABASE_PUBLISHABLE_KEY}`, ...(payload ? { 'Content-Type': 'application/json' } : {}) },
+        ...(payload ? { body: JSON.stringify(payload) } : {})
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'The request could not be completed.');
+      return result;
+    }
+
+    async function loadChurches() {
+      try {
+        const viewKey = `directory-view-${new Date().toISOString().slice(0, 10)}`;
+        if (!sessionStorage.getItem(viewKey)) {
+          sessionStorage.setItem(viewKey, '1');
+          directoryRequest('track-view', 'POST', {}).catch(() => {});
+        }
+      } catch { /* View counting is optional when browser storage is unavailable. */ }
+      const cards = document.getElementById('cards');
+      if (cards) cards.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text-secondary);">Loading churches…</div>';
+      try {
+        const result = await directoryRequest('list');
+        churches = (result.churches || []).map(row => ({ ...row, submittedAt: row.created_at ? new Date(row.created_at).toLocaleDateString() : '' }));
+        renderAll();
+      } catch (error) {
+        if (cards) cards.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text-secondary);">The directory is temporarily unavailable. Please try again shortly.</div>';
+        console.error('Directory loading failed:', error);
+      }
+    }
+
+    function renderAll() {
+      const countrySelect = document.getElementById('country');
+      const citySelect = document.getElementById('city');
+      if (!countrySelect || !citySelect) return;
+      const currentCountry = countrySelect.value;
+      const currentCity = citySelect.value;
+      const countries = Array.from(new Set(churches.map(c => c.country).filter(Boolean))).sort();
+      const cities = Array.from(new Set(churches.map(c => c.city).filter(Boolean))).sort();
+      countrySelect.innerHTML = '<option value="">All Countries</option>' + countries.map(c => `<option value="${escapeHtml(c)}" ${c === currentCountry ? 'selected' : ''}>${escapeHtml(c)}</option>`).join('');
+      citySelect.innerHTML = '<option value="">All Cities</option>' + cities.map(c => `<option value="${escapeHtml(c)}" ${c === currentCity ? 'selected' : ''}>${escapeHtml(c)}</option>`).join('');
+      filterCards();
+    }
+
+    function filterCards() {
+      const q = (document.getElementById('q')?.value || '').toLowerCase();
+      const selectedCountry = document.getElementById('country')?.value || '';
+      const selectedCity = document.getElementById('city')?.value || '';
+      const cardsContainer = document.getElementById('cards');
+      if (!cardsContainer) return;
+      const filtered = churches.filter(item => {
+        const searchStr = `${item.name} ${item.pastor || ''} ${item.city} ${item.country} ${item.state || ''} ${item.description || ''}`.toLowerCase();
+        return (!q || searchStr.includes(q)) && (!selectedCountry || item.country === selectedCountry) && (!selectedCity || item.city === selectedCity);
+      });
+      filtered.sort((a, b) => {
+        const isPillarOfFireIndia = item => /pillar of fire/i.test(item.name || '') && /india/i.test(item.country || '');
+        return Number(isPillarOfFireIndia(b)) - Number(isPillarOfFireIndia(a));
+      });
+      if (!filtered.length) {
+        cardsContainer.innerHTML = `<div style="grid-column:1 / -1; text-align:center; padding:40px 20px; background:#FFF; border:1px dashed var(--border); border-radius:8px;"><h3 style="font-family:'Cormorant Garamond',serif; color:var(--royal-blue); margin-bottom:8px; font-size:24px;">No Churches Found</h3><p style="color:var(--text-secondary); font-size:14px; margin-bottom:16px;">Try adjusting your search terms or filters.</p><button class="add" onclick="openModal()">+ Submit a Church</button></div>`;
+        return;
+      }
+      cardsContainer.innerHTML = filtered.map(item => `
+        <article class="card" data-id="${escapeHtml(item.id)}">
+          <div class="card-top-row"><div class="country">${escapeHtml(item.country)}</div></div>
+          <h3>${escapeHtml(item.name)}</h3>
+          <div class="meta">${escapeHtml(item.city)}${item.state ? ', ' + escapeHtml(item.state) : ''}<br>Pastor: ${escapeHtml(item.pastor || '—')}</div>
+          <div class="line"></div>
+          <a class="more" href="#" onclick="openChurchDetailsById('${escapeHtml(item.id)}'); return false;">View Church Details</a>
+        </article>`).join('');
+    }
+
+    function openContact() { document.getElementById('contact-modal').classList.add('show'); }
+    function closeContact() { document.getElementById('contact-modal').classList.remove('show'); }
+    function openModal() { document.getElementById('modal').classList.add('show'); }
+    function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+    async function handleChurchSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('add-church-form');
+      const button = form.querySelector('button[type="submit"]');
+      const payload = {
+        name: document.getElementById('add-name').value.trim(), country: document.getElementById('add-country').value.trim(),
+        state: document.getElementById('add-state').value.trim(), city: document.getElementById('add-city').value.trim(),
+        address: document.getElementById('add-address').value.trim(), zip: document.getElementById('add-zip').value.trim(),
+        pastor: document.getElementById('add-pastor').value.trim(), phone: document.getElementById('add-phone').value.trim(),
+        fax: document.getElementById('add-fax').value.trim(),
+        email: document.getElementById('add-email').value.trim(), website: document.getElementById('add-website').value.trim(),
+        description: document.getElementById('add-desc').value.trim(), company_website: document.getElementById('company-website').value
+      };
+      if (!payload.name || !payload.country || !payload.city) { alert('Please fill in the required fields: Church Name, Country, and City.'); return; }
+      if (button) { button.disabled = true; button.textContent = 'Submitting…'; }
+      try {
+        await directoryRequest('submit', 'POST', payload);
+        closeModal(); form.reset();
+        alert(`Thank you! “${payload.name}” was submitted for review. It will appear in the directory after approval.`);
+      } catch (error) { alert(error.message || 'Your request could not be submitted. Please try again.'); }
+      finally { if (button) { button.disabled = false; button.textContent = 'Submit for Review'; } }
+    }
+
+    async function handleEditSuggestion(e) {
+      e.preventDefault();
+      const form = document.getElementById('edit-suggestion-form');
+      const button = form.querySelector('button[type="submit"]');
+      const payload = { church_id: form.dataset.churchId, company_website: document.getElementById('suggest-company-website').value };
+      for (const field of ['name','pastor','country','state','city','zip','address','email','phone','fax','website','description']) {
+        payload[field] = form.elements[field].value.trim();
+      }
+      button.disabled = true; button.textContent = 'Sending…';
+      try {
+        await directoryRequest('suggest-edit', 'POST', payload);
+        closeEditSuggestion(); form.reset();
+        alert('Thank you. Your suggested changes have been sent for administrator review and will appear after approval.');
+      } catch (error) {
+        const message = document.getElementById('edit-suggestion-error');
+        message.textContent = error.message || 'Your suggestion could not be submitted. Please try again.';
+        message.style.display = 'block';
+      } finally { button.disabled = false; button.textContent = 'Send for Review'; }
+    }
+
+    document.getElementById('edit-suggestion-form').addEventListener('submit', handleEditSuggestion);
+
+    function openChurchDetailsById(id) {
+      const item = churches.find(c => c.id === id);
+      if (!item) return;
+      currentDetailsData = item;
+      renderDetailsView();
+      document.getElementById('details-modal').classList.add('show');
+    }
+
+    function openEditSuggestion() {
+      if (!currentDetailsData?.id) return;
+      const form = document.getElementById('edit-suggestion-form');
+      form.dataset.churchId = currentDetailsData.id;
+      for (const field of ['name','pastor','country','state','city','zip','address','email','phone','fax','website','description']) {
+        form.elements[field].value = currentDetailsData[field] || '';
+      }
+      document.getElementById('edit-suggestion-error').style.display = 'none';
+      closeDetails();
+      document.getElementById('edit-suggestion-modal').classList.add('show');
+    }
+
+    function closeEditSuggestion() { document.getElementById('edit-suggestion-modal').classList.remove('show'); }
+
+    function renderDetailsView() {
+      const d = currentDetailsData || {};
+      document.getElementById('d-country').textContent = d.country || '';
+      const isMinistry = /ministr(y|ies)/i.test(d.name || '');
+      document.getElementById('d-church-name-display').textContent = d.name || '';
+      document.getElementById('d-tagline').textContent = '— ' + (isMinistry ? 'an end-time message ministry' : 'an end-time message church');
+      document.getElementById('d-header-pastor').textContent = d.pastor ? 'Pastor: ' + d.pastor : '';
+      const set = (id, value) => { document.getElementById(id).textContent = value || '—'; };
+      set('d-name', d.name); set('d-pastor', d.pastor); set('d-country-val', d.country); set('d-city', d.city);
+      set('d-address', d.address); set('d-state', d.state); set('d-zip', d.zip); set('d-phone', d.phone); set('d-fax', d.fax);
+      const email = document.getElementById('d-email');
+      email.replaceChildren();
+      if (d.email) {
+        const link = document.createElement('a');
+        link.href = `mailto:${encodeURIComponent(d.email)}`;
+        link.textContent = d.email;
+        email.append(link);
+      } else email.textContent = '—';
+
+      const website = document.getElementById('d-website');
+      website.replaceChildren();
+      if (d.website) {
+        const link = document.createElement('a');
+        const normalizedWebsite = /^https?:\/\//i.test(d.website) ? d.website : `https://${d.website}`;
+        try {
+          const parsed = new URL(normalizedWebsite);
+          if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+            link.href = parsed.href;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = d.website;
+            website.append(link);
+          } else website.textContent = d.website;
+        } catch { website.textContent = d.website; }
+      } else website.textContent = '—';
+    }
+
+    function closeDetails() { document.getElementById('details-modal').classList.remove('show'); }
+
+    document.addEventListener('DOMContentLoaded', loadChurches);
+
+    if (new URLSearchParams(window.location.search).get('contact') === 'submit') {
+      openModal();
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+
+    document.querySelectorAll('.modal').forEach(m => {
+      m.addEventListener('click', e => {
+        if (e.target === m && m.id !== 'edit-suggestion-modal') m.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+
+</html>
